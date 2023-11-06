@@ -4,12 +4,13 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import Person4SharpIcon from '@mui/icons-material/Person4Sharp';
+import AppsIcon from '@mui/icons-material/Apps';
 const Navabr = () => {
     return (
         <div className={styles.parent}>
             
        <div className={styles.item}>
-       <div ><WidgetsIcon style={{color:"#fff"}}/></div>
+       <div ><AppsIcon style={{color:"#fff"}}/></div>
         <div>
             <h3 style={{color:"#fff"}}>To Do</h3>
         </div>

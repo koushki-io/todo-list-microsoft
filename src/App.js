@@ -12,7 +12,7 @@ function App() {
 <div className="main">
   <div className="leftSide">
 <PersistentDrawerLeft/>
-  <h1>madi</h1>   
+
   </div>
 </div>
     </div>
