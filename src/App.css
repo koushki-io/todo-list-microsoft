@@ -3,3 +3,19 @@
   margin: 0;
   border: 0;
 }
+.parent{
+  display: flex;
+  flex-direction: column;
+}
+.navbar{
+  position: relative;
+  width:calc(100% -240px) ;
+  margin-left: 240px;
+}
+.main{
+  position: relative;
+}
+.leftSide{
+  position: absolute;
+  top: 100px;
+}

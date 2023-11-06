@@ -11,7 +11,7 @@ const Navabr = () => {
        <div className={styles.item}>
        <div ><WidgetsIcon style={{color:"#fff"}}/></div>
         <div>
-            <h3 style={{color:"#fff"}}>To DO</h3>
+            <h3 style={{color:"#fff"}}>To Do</h3>
         </div>
        </div>
 
