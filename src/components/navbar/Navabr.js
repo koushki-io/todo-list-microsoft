@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './navbar.module.css'
-import WidgetsIcon from '@mui/icons-material/Widgets';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import Person4SharpIcon from '@mui/icons-material/Person4Sharp';
@@ -18,7 +17,7 @@ const Navabr = () => {
 
         <div className={styles.inputBox}>
         <SearchIcon className={styles.iconSerche} />
-            <input type="search" className={styles.inputSerche}></input>
+            <input type="search" placeholder='Serch...' className={styles.inputSerche}></input>
         </div>
 
         <div className={styles.item}>

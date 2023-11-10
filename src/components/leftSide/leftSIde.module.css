@@ -1,17 +1,34 @@
 .parent{
     width: 300px;
     height: 100vh;
-    background: #cbc5c5;
+    background: #fff;
     display: flex;
     flex-direction: column;
+    margin-left:0 ;
+    transition: all ease-in .3s;
+    box-shadow: -2px 1px 5px 0px rgba(0, 0, 0, 0.5);
+
+}
+.parentOff{
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    margin-left:-300px ;
+    transition: all ease-in .3s;
+
 }
 .header{
     width: 100%;
     height: 65px;
-    background-color: rgb(119, 119, 231);
+    background-color: #fff;
     display: flex;
     box-sizing: border-box;
     padding: 25px 0 0 20px;
+    cursor: pointer;
+    border-bottom:.3px solid rgb(234, 233, 233);
 }
 .menuItem{
     cursor: pointer;
@@ -23,5 +40,16 @@
     padding: 20px;
 }
 .menuItem:hover{
-background: #7b4444;
+background: #f1f1ff;
+}
+.borderBox{
+    padding: 10px;
+    box-sizing: border-box;
+}
+.icons{
+    color: rgb(57, 54, 54);
+}
+
+.border{
+    border: 1px solid black;
 }

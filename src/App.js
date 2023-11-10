@@ -1,22 +1,26 @@
-import Navabr from "./components/navbar/Navabr";
+
 import './App.css'
-import PersistentDrawerLeft from "./components/leftSide/LeftSide";
+import { useState } from "react";
+import MyDay from "./pages/myDay/MyDay";
+import Layout from "./components/Layout/Layout";
+
+
 
 function App() {
-  // const [value, setValue] = useState(0);
-  return (
-    <div className="parent" >
-      <div className="navbar">
-   <Navabr/>
-      </div>
-<div className="main">
-  <div className="leftSide">
-<PersistentDrawerLeft/>
+  const [openClose, setopenClose] = useState(true)
 
-  </div>
-</div>
-    </div>
+  const OpenCloseSideHandler=()=>{
+    setopenClose((l)=>!l)
+  }
+
+  return (
+   <>
+   <Layout openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}>
+ <MyDay OpenCloseSideHandler={OpenCloseSideHandler}/>
+
+   </Layout>
+   </>
   );
 }
 
-export default App;
+export default App
