@@ -2,11 +2,12 @@ import { useState } from "react";
 import LeftSide from "../leftSide/LeftSide";
 import Navabr from "../navbar/Navabr";
 import styles from './layout.module.css'
+import { useNavigate } from "react-router-dom";
+
+
 
 
 function Layout(props) {
-
-
 
   return (
     <div className={styles.parent} >

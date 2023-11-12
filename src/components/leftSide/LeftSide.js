@@ -7,6 +7,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import HomeIcon from '@mui/icons-material/Home';
 function LeftSide({showSide,OpenCloseSideHandler}) {
+  
+
   const [menuList, setmenuList] = useState(["My Day","Important","Planned","Assigned to me","Tasks"])
   return (
     <div className={showSide ? styles.parent :styles.parentOff }>
