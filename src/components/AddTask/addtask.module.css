@@ -56,8 +56,8 @@ background-color: #faf9f8;
     background-color: #fff;
     border: 1px solid rgb(198, 185, 185);
  }
- .item .icon{
+ .item {
     font-size: 20px;
-    /* margin-right: 10px; */
+    display: flex;
     color: rgb(53, 51, 51);
  }

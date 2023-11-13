@@ -5,6 +5,9 @@ import LoopIcon from '@mui/icons-material/Loop';
 import  styles from "./addtask.module.css"
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import DuoDate from './DuoDate';
+import RemindMe from './RemindMe';
+import Repeat from './Repeat';
 function AddTask() {
   return (
     <div className={styles.parent}>
@@ -14,25 +17,22 @@ function AddTask() {
         </div>
         <div className={styles.boxFooter} >
           <div className={styles.item}>
-          <Tooltip title="Add duo date">
-      <IconButton>
-      <CalendarMonthIcon className={styles.icon}/>
-       
-      </IconButton>
-    </Tooltip>
-          <Tooltip title="Remind me">
-      <IconButton>
-      <NotificationsNoneIcon className={styles.icon}/>
-       
-      </IconButton>
-    </Tooltip>
+
+          
+            <DuoDate/>
+            <RemindMe/>
+            <Repeat/>
+
+
+          {/* 
+          
           <Tooltip title="Repeat">
       <IconButton>
       <LoopIcon className={styles.icon}/>
        
       </IconButton>
     </Tooltip>
-          
+           */}
           
           </div>
           <div className={styles.addButton}>
