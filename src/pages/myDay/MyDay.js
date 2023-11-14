@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -7,12 +7,18 @@ import moment from 'moment';
 
 import { format } from 'date-fns';
 import AddTask from '../../components/AddTask/AddTask';
+import TaskItem from '../../components/taskItem/TaskItem';
+import Acordion from '../../components/Acordion/Acordion';
 
 function MyDay({OpenCloseSideHandler,openClose}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
   const dayOfWeek = format(new Date(), 'EEEE');
+const [data, setdata] = useState({
+  name:"madi"
+})
+const [DATA, setDATA] = useState([])
 
   return (
     <div className={styles.myParent}>
@@ -40,8 +46,14 @@ function MyDay({OpenCloseSideHandler,openClose}) {
         </div>
 
         <div className={styles.main} >
-
-        <AddTask/>
+        <AddTask data={DATA} setData={setDATA}/>
+        
+        {
+        
+        DATA.map((item,key)=><TaskItem key={key} data={item} />)
+        }
+    <br/>
+        <Acordion/>
         </div>
 
     </div>

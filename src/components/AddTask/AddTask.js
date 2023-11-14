@@ -1,19 +1,23 @@
-import React from 'react'
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import LoopIcon from '@mui/icons-material/Loop';
+import React, { useState } from 'react'
 import  styles from "./addtask.module.css"
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import DuoDate from './DuoDate';
 import RemindMe from './RemindMe';
 import Repeat from './Repeat';
-function AddTask() {
+function AddTask({data,setData}) {
+  const [changValue, setchangValue] = useState('')
+  const submitHandler=(e)=>{
+e.preventDefault()
+if(changValue){
+
+  setchangValue("")
+  setData([{name:changValue},...data])
+}
+  }
   return (
-    <div className={styles.parent}>
+    <form onSubmit={submitHandler} className={styles.parent}>
         <div className={styles.boxInput} >
             <span>+</span>
-            <input type="text" placeholder='Add a task' name='addTask'/>
+            <input type="text" value={changValue} onChange={(e)=>setchangValue(e.target.value)} placeholder='Add a task' name='addTask'/>
         </div>
         <div className={styles.boxFooter} >
           <div className={styles.item}>
@@ -21,26 +25,16 @@ function AddTask() {
           
             <DuoDate/>
             <RemindMe/>
+            
             <Repeat/>
-
-
-          {/* 
-          
-          <Tooltip title="Repeat">
-      <IconButton>
-      <LoopIcon className={styles.icon}/>
-       
-      </IconButton>
-    </Tooltip>
-           */}
           
           </div>
           <div className={styles.addButton}>
-         <button>Add</button>
+         <button type='submit'>Add</button>
           </div>
 
         </div>
-    </div>
+    </form>
   )
 }
 
