@@ -3,14 +3,31 @@ import  styles from "./addtask.module.css"
 import DuoDate from './DuoDate';
 import RemindMe from './RemindMe';
 import Repeat from './Repeat';
-function AddTask({data,setData}) {
+import { useDispatch, useSelector } from 'react-redux';
+import { AddTaskAction } from '../../redux/action';
+import { v4 } from 'uuid';
+function AddTask() {
+  const generateShortId = () => {
+    const fullId = v4(); // Daryaft UUID kamel
+    const shortId = fullId.substr(0, 8); // Cut kardan ta 8 character
+    return shortId;
+  };
+  const taskId=generateShortId()
+const dispatch=useDispatch()
   const [changValue, setchangValue] = useState('')
+
   const submitHandler=(e)=>{
 e.preventDefault()
 if(changValue){
-
+const myObj={
+  name:changValue,
+  important:false,
+  completed:false,
+  id:taskId
+}
   setchangValue("")
-  setData([{name:changValue},...data])
+  dispatch(AddTaskAction(myObj))
+
 }
   }
   return (

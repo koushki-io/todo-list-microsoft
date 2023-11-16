@@ -14,23 +14,22 @@ function App() {
 
 
   const OpenCloseSideHandler=()=>{
-    setopenClose((l)=>!l)
+    setopenClose((last)=>!last)
   }
 
   return (
    <>
    
    <Layout openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}>
+
     <BrowserRouter>
     <Routes>
-
     <Route path='/myday'
     element={<MyDay  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>
 
     </Routes>
-    
     </BrowserRouter>
  
 

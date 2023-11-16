@@ -18,20 +18,11 @@ export default function Acordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Compelited 1</Typography>
+          <Typography>Completed 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-          <TaskItem data={data} />
-
+          {/* <TaskItem data={data} /> */}
           </Typography>
         </AccordionDetails>
       </Accordion>

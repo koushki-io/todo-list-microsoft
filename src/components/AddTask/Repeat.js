@@ -72,6 +72,9 @@ export default function Repeat() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  window.oncontextmenu = function(event) {
+    setAnchorEl(null);
+    }
 
   return (
     <div>

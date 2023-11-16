@@ -74,6 +74,9 @@ export default function RemindMe() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  window.oncontextmenu = function(event) {
+    setAnchorEl(null);
+    }
 
   return (
     <div>

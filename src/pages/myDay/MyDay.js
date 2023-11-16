@@ -9,17 +9,18 @@ import { format } from 'date-fns';
 import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../../components/taskItem/TaskItem';
 import Acordion from '../../components/Acordion/Acordion';
+import { useSelector } from 'react-redux';
+
 
 function MyDay({OpenCloseSideHandler,openClose}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
   const dayOfWeek = format(new Date(), 'EEEE');
-const [data, setdata] = useState({
-  name:"madi"
-})
-const [DATA, setDATA] = useState([])
+  const [update, setupdate] = useState(0);
+const myDay=useSelector(x=>x.myDay)
 
+console.log(myDay);
   return (
     <div className={styles.myParent}>
       <div className={styles.header}>
@@ -46,11 +47,13 @@ const [DATA, setDATA] = useState([])
         </div>
 
         <div className={styles.main} >
-        <AddTask data={DATA} setData={setDATA}/>
+        <AddTask />
+
+        
         
         {
         
-        DATA.map((item,key)=><TaskItem key={key} data={item} />)
+        myDay.map((item,key)=><TaskItem key={key} data={item} update={setupdate}  />)
         }
     <br/>
         <Acordion/>
