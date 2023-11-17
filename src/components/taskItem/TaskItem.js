@@ -1,52 +1,82 @@
-import React,{useRef, useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import styles from './taskItem.module.css'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { ChangeImportantAction,ChangeCompletedAction } from '../../redux/action';
+import { ChangeImportantAction,TaskRightSide,ChangeCompletedAction, ChangeDropDownAction, CloseDropDownAction, UpdateAction, OpenCloseRightSide } from '../../redux/action';
 import { useDispatch } from 'react-redux';
 import DropDownMenu from './dropMenu/DropDownMenu';
 
-function TaskItem({data,update}) {
+function TaskItem({data}) {
 
 const dispatch=useDispatch()
 const [client, setclient] = useState(0);
-const [showDropMenu, setshowDropMenu] = useState(false);
+
+
+useEffect(() => {
+  closeDropdown()
+}, [])
+
 
 const onContextMenuHandler=(e)=>{
 e.preventDefault()
 setclient({x:e.clientX,y:e.clientY})
-setshowDropMenu(true)
+dispatch(ChangeDropDownAction(data.id))
+dispatch(UpdateAction())
+
+
+
 
 }
 
 
   const  ChangeImportantHandler= ()=>{
     dispatch(ChangeImportantAction(data.id))
-    update(last=>last+1)
+     dispatch(UpdateAction())
 
   }
 
   const chackedHandler =()=>{
     dispatch(ChangeCompletedAction(data.id))
-    update(last=>last+1)
+dispatch(UpdateAction())
+
+
+  }
+  const closeDropdown =()=>{
+    dispatch(CloseDropDownAction(data.id))
+dispatch(UpdateAction())
+
 
   }
 
+  const clickHandler =()=>{
+    dispatch(OpenCloseRightSide(true))
+    dispatch(TaskRightSide(data))
 
 
-    // window.oncontextmenu = function(event) {
-    //   setshowDropMenu(false)
 
+  }
 
-    //   }
-
-
+  window.onclick = function(event) {
  
+    closeDropdown()
+  }
+  document.addEventListener("scroll",closeDropdown)
+
+
+
+ const parentRef = useRef()
+  window.oncontextmenu = function(event) {
+    if (event.target.className !== parentRef.current.className) {
+      closeDropdown()
+    }
+
+    }
 
   
   return (
-    <div className={styles.parent}  onContextMenu={onContextMenuHandler}>
-<DropDownMenu client={client} show={showDropMenu} setShow={setshowDropMenu}/>
+   <div>
+     <div className={styles.parent_item_list} onClick={clickHandler} ref={parentRef} onContextMenu={onContextMenuHandler}>
+{data.dropDown &&  <DropDownMenu client={client} id={data.id} />}
 
 
 <div className={styles.leftSide}>
@@ -84,6 +114,7 @@ setshowDropMenu(true)
 
 
     </div>
+   </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -12,15 +12,18 @@ import Acordion from '../../components/Acordion/Acordion';
 import { useSelector } from 'react-redux';
 
 
+
 function MyDay({OpenCloseSideHandler,openClose}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
   const dayOfWeek = format(new Date(), 'EEEE');
-  const [update, setupdate] = useState(0);
 const myDay=useSelector(x=>x.myDay)
+const UPDATE=useSelector(x=>x.update)
 
-console.log(myDay);
+
+
+
   return (
     <div className={styles.myParent}>
       <div className={styles.header}>
@@ -53,10 +56,10 @@ console.log(myDay);
         
         {
         
-        myDay.map((item,key)=><TaskItem key={key} data={item} update={setupdate}  />)
+        myDay.map((item,key)=><TaskItem key={key} data={item}   />)
         }
     <br/>
-        <Acordion/>
+        <Acordion />
         </div>
 
     </div>

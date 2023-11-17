@@ -3,6 +3,7 @@ import LeftSide from "../leftSide/LeftSide";
 import Navabr from "../navbar/Navabr";
 import styles from './layout.module.css'
 import { useNavigate } from "react-router-dom";
+import RightSide from "../rightSide/RightSide";
 
 
 
@@ -17,6 +18,7 @@ function Layout(props) {
 <div className={styles.main}>
     <div className={styles.leftSide}>
           <LeftSide  showSide={props.openClose}  OpenCloseSideHandler={props.OpenCloseSideHandler} />
+          <RightSide/>
       </div>
   <div className={props.openClose? styles.content: styles.contentSideOff}>
          {props.children}

@@ -8,8 +8,8 @@ import { AddTaskAction } from '../../redux/action';
 import { v4 } from 'uuid';
 function AddTask() {
   const generateShortId = () => {
-    const fullId = v4(); // Daryaft UUID kamel
-    const shortId = fullId.substr(0, 8); // Cut kardan ta 8 character
+    const fullId = v4(); 
+    const shortId = fullId.substr(0, 8); 
     return shortId;
   };
   const taskId=generateShortId()
@@ -23,6 +23,7 @@ const myObj={
   name:changValue,
   important:false,
   completed:false,
+  dropDown:false,
   id:taskId
 }
   setchangValue("")

@@ -1,4 +1,4 @@
-.parent{
+.parent_item_list{
     width: 100%;
     height: 50px;
     /* border:  1px solid black; */
@@ -10,6 +10,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all ease-in .3s;
+    cursor: pointer;
+}
+.parent_item_list:hover{
+  transition: all ease-in .3s;
+  background-color: rgb(214, 224, 233);
 }
 .leftSide{
     display:flex;
