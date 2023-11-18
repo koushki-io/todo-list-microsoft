@@ -1,6 +1,6 @@
 .parent{
     width: 300px;
-    height: 100vh;
+    /* height: 100vh; */
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,7 @@
 }
 .parentOff{
     width: 300px;
-    height: 100vh;
+    /* height: 100vh; */
     background: #fff;
     display: flex;
     flex-direction: column;

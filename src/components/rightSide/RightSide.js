@@ -6,6 +6,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -19,7 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeCompletedAction, ChangeImportantAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, DeleteAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
 import  CheckBox  from '../taskItem/checkBox/CheckBox';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -104,6 +105,13 @@ dispatch(UpdateAction())
      dispatch(UpdateAction())
 
   }
+  const deleteHandler=()=>{
+    dispatch(DeleteAction(task.id))
+    dispatch(UpdateAction())
+    handleDrawerClose()
+ 
+  
+  }
   const listItem=useRef()
 
   return (
@@ -165,11 +173,18 @@ dispatch(UpdateAction())
 
         </List>
         <Divider />
-        <List>
+        <DrawerHeader>
+        <List style={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%" }}>
         <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+                <DeleteIcon   onClick={deleteHandler} style={{color:"red",padding:"10px" , cursor:"pointer"}} /> 
+        
+                
         </List>
+
+        </DrawerHeader>
+      
       </Drawer>
     </Box>
     }

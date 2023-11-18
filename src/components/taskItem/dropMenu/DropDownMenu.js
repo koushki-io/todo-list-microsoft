@@ -6,12 +6,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './dropDown.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { DeleteAction, OpenCloseRightSide, UpdateAction } from '../../../redux/action';
-function DropDownMenu({client,id}) {
+function DropDownMenu({client,id,}) {
 const dispatch=useDispatch()
 
 const {task}=useSelector(x=>x.rightSide)
 
-console.log(task);
 const deleteHandler=()=>{
   dispatch(DeleteAction(id))
   dispatch(UpdateAction())

@@ -9,7 +9,8 @@ import { format } from 'date-fns';
 import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../../components/taskItem/TaskItem';
 import Acordion from '../../components/Acordion/Acordion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CloseDropDownAction, UpdateAction } from '../../redux/action';
 
 
 
@@ -20,9 +21,18 @@ function MyDay({OpenCloseSideHandler,openClose}) {
   const dayOfWeek = format(new Date(), 'EEEE');
 const myDay=useSelector(x=>x.myDay)
 const UPDATE=useSelector(x=>x.update)
+const  dispatch=useDispatch()
 
 
+// const closeDropdown =()=>{
 
+
+// }
+// document.addEventListener("scroll",closeDropdown)
+const scrollHandler=()=>{
+  dispatch(CloseDropDownAction())
+dispatch(UpdateAction())
+}
 
   return (
     <div className={styles.myParent}>
@@ -52,14 +62,15 @@ const UPDATE=useSelector(x=>x.update)
         <div className={styles.main} >
         <AddTask />
 
-        
-        
-        {
-        
-        myDay.map((item,key)=><TaskItem key={key} data={item}   />)
-        }
-    <br/>
+          <div onScroll={scrollHandler} className={styles.tasks}>
+
+          { myDay.map((item,key)=><TaskItem key={key} data={item}   />)}
+           <br/>
         <Acordion />
+          </div>
+        
+        
+   
         </div>
 
     </div>

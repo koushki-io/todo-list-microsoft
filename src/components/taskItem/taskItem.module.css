@@ -25,13 +25,17 @@
 }
 .title{
   height: 20px;
+  width: auto;
   color: #000;
 }
 .task{
   color: #000;
 
 }
-
+.title span{
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 .centerSide{
   width: 100%;

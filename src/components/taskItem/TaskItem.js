@@ -46,8 +46,8 @@ dispatch(UpdateAction())
     dispatch(CloseDropDownAction(data.id))
 dispatch(UpdateAction())
 
-
-  }
+}
+// document.addEventListener("scroll",closeDropdown)
 
   const clickHandler =()=>{
     dispatch(OpenCloseRightSide(true))
@@ -61,7 +61,7 @@ dispatch(UpdateAction())
  
     closeDropdown()
   }
-  document.addEventListener("scroll",closeDropdown)
+
 
 
 
@@ -77,7 +77,7 @@ dispatch(UpdateAction())
   return (
    <div>
      <div className={styles.parent_item_list}  >
-{data.dropDown &&  <DropDownMenu client={client} id={data.id} />}
+{data.dropDown &&  <DropDownMenu client={client} id={data.id} show={data.dropDown} />}
 
 
 <div className={styles.leftSide}>
