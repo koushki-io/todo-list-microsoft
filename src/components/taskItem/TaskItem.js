@@ -5,6 +5,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { ChangeImportantAction,TaskRightSide,ChangeCompletedAction, ChangeDropDownAction, CloseDropDownAction, UpdateAction, OpenCloseRightSide } from '../../redux/action';
 import { useDispatch } from 'react-redux';
 import DropDownMenu from './dropMenu/DropDownMenu';
+import  CheckBox  from './checkBox/CheckBox';
 
 function TaskItem({data}) {
 
@@ -39,8 +40,8 @@ dispatch(UpdateAction())
     dispatch(ChangeCompletedAction(data.id))
 dispatch(UpdateAction())
 
-
   }
+  
   const closeDropdown =()=>{
     dispatch(CloseDropDownAction(data.id))
 dispatch(UpdateAction())
@@ -75,22 +76,14 @@ dispatch(UpdateAction())
   
   return (
    <div>
-     <div className={styles.parent_item_list} onClick={clickHandler} ref={parentRef} onContextMenu={onContextMenuHandler}>
+     <div className={styles.parent_item_list}  >
 {data.dropDown &&  <DropDownMenu client={client} id={data.id} />}
 
 
 <div className={styles.leftSide}>
-        <div className={styles.checkbox_wrapper_31}>
-  <input type="checkbox" checked={data.completed} onChange={chackedHandler}  />
-  <svg viewBox="0 0 35.6 35.6">
-    <circle className={styles.background} cx="17.8" cy="17.8" r="17.8"></circle>
-    <circle className={styles.stroke} cx="17.8" cy="17.8" r="14.37"></circle>
-    <polyline className={styles.check} points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-  </svg>
-        </div>
 
-
-  
+<CheckBox checked={data.completed}  chackedHandler={chackedHandler} />
+   
 
 
  <div classNam={styles.taskContent}>
@@ -102,6 +95,9 @@ dispatch(UpdateAction())
         </div>
 
  </div>
+
+</div>
+<div className={styles.centerSide} onClick={clickHandler} onContextMenu={onContextMenuHandler}  ref={parentRef}  > 
 
 </div>
 <div className={styles.rightSide}>

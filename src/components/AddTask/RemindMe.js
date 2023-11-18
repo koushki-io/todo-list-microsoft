@@ -65,7 +65,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function RemindMe() {
+export default function RemindMe({inRightSide}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -79,14 +79,26 @@ export default function RemindMe() {
     }
 
   return (
-    <div>
+    <div style={{ width:"100%"}}>
+
+
+
+{inRightSide ?
+  <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
+  <NotificationsNoneIcon onClick={handleClick}  />
+    <span>Remind me</span>
+  </div>
+              :
+              <Tooltip title="Remind me">
+              <IconButton>
+              <NotificationsNoneIcon onClick={handleClick}/>
+               
+              </IconButton>
+            </Tooltip>
+
+       }
         {/* onClick={handleClick} */}
-        <Tooltip title="Remind me">
-      <IconButton>
-      <NotificationsNoneIcon onClick={handleClick}/>
-       
-      </IconButton>
-    </Tooltip>
+    
 
       <StyledMenu
         id="demo-customized-menu"

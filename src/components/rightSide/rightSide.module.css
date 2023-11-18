@@ -1,0 +1,28 @@
+.headerParent{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.BoxLeft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.listItem{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    gap: 5px;
+    transition: all ease-in .3s;
+  
+}
+.listItem:hover{
+    background-color: #e2c1c1;
+    transition: all ease-in .3s;
+
+}

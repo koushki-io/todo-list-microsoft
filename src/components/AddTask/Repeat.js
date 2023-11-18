@@ -63,7 +63,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Repeat() {
+export default function Repeat({inRightSide}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -77,14 +77,25 @@ export default function Repeat() {
     }
 
   return (
-    <div>
+    <div style={{ width:"100%"}}>
+
+
+
+    {inRightSide ?
+      <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
+      <LoopIcon onClick={handleClick}  />
+        <span>Remind me</span>
+      </div>
+                  :
+                  <Tooltip title="Repeat">
+                  <IconButton>
+                  <LoopIcon onClick={handleClick}/>
+                   
+                  </IconButton>
+                </Tooltip>
+}
         {/* onClick={handleClick} */}
-        <Tooltip title="Repeat">
-      <IconButton>
-      <LoopIcon onClick={handleClick}/>
        
-      </IconButton>
-    </Tooltip>
 
       <StyledMenu
         id="demo-customized-menu"

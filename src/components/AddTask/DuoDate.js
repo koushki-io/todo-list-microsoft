@@ -59,7 +59,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DuoDate() {
+export default function DuoDate({inRightSide}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -73,15 +73,24 @@ export default function DuoDate() {
     }
 
   return (
-    <div>
+    <div style={{ width:"100%"}}>
+       {inRightSide ?
+  <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
+  <CalendarMonthIcon onClick={handleClick}  />
+    <span>Today</span>
+  </div>
+              :
+              <Tooltip title="Add duo date">
+              <IconButton> 
+              <CalendarMonthIcon onClick={handleClick}  />
+               
+               </IconButton>
+            </Tooltip>
+
+       }
+    
+
        
-        <Tooltip title="Add duo date">
-      <IconButton>
-        <CalendarMonthIcon onClick={handleClick}  />
-      
-       
-      </IconButton>
-    </Tooltip>
 
       <StyledMenu
         id="demo-customized-menu"

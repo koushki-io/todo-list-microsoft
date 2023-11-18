@@ -7,9 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TaskItem from '../taskItem/TaskItem';
 
 export default function Acordion() {
-  const [data, setdata] = React.useState({
-    name:"madi"
-  })
+
   return (
     <div>
       <Accordion>

@@ -19,7 +19,15 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useDispatch, useSelector } from 'react-redux';
-import { OpenCloseRightSide } from '../../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
+import  CheckBox  from '../taskItem/checkBox/CheckBox';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
+import styles from './rightSide.module.css'
+import DuoDate from '../AddTask/DuoDate';
+import RemindMe from '../AddTask/RemindMe';
+import Repeat from '../AddTask/Repeat';
+import { useRef } from 'react';
 
 const drawerWidth = 240;
 
@@ -73,23 +81,35 @@ export default function PersistentDrawerRight() {
   const theme = useTheme();
 const {show : Open}=useSelector(x=>x.rightSide)
 const {task}=useSelector(x=>x.rightSide)
+const UPDATE=useSelector(x=>x.update)
+
+
 
 
 const dispatch= useDispatch()
-  const [open, setOpen] = React.useState(true);
 
 
 
+const chackedHandler =()=>{
+  dispatch(ChangeCompletedAction(task.id))
+dispatch(UpdateAction())
 
+}
   const handleDrawerClose = () => {
     dispatch(OpenCloseRightSide(false))
 
   };
+  const  ChangeImportantHandler= ()=>{
+    dispatch(ChangeImportantAction(task.id))
+     dispatch(UpdateAction())
+
+  }
+  const listItem=useRef()
 
   return (
     <>{task.name &&
 
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' ,position:"fixed", zIndex:"99"}}>
 
       <Drawer
         sx={{
@@ -104,36 +124,51 @@ const dispatch= useDispatch()
         open={Open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-          <span>{task.name}</span>
+      
+          <div className={styles.headerParent} >
+            <div className={styles.BoxLeft}>
+
+<CheckBox checked={task.completed} chackedHandler={chackedHandler}  />
+<span>{task.name}</span>
+            </div>
+            <div className={styles.BoxRight}>
+
+{task.important?  <StarIcon style={{color:"blue"}} onClick={ChangeImportantHandler} />  : <StarBorderIcon style={{color:"blue"}} onClick={ChangeImportantHandler}/>}
+
+            </div>
+
+
+          </div>
+
+
         </DrawerHeader>
-        {/* <Divider /> */}
+        <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        {/*  ///////////////  */}
+
+        <div ref={listItem} className={styles.listItem}>
+
+            <RemindMe inRightSide={true}/>
+        </div>
+        <div ref={listItem} className={styles.listItem}>
+        <DuoDate inRightSide={true} />
+
+        </div>
+        <div ref={listItem} className={styles.listItem}>
+        <Repeat inRightSide={true}/>
+
+
+        </div>
+            
+        {/*  ///////////////  */}
+
+
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
         </List>
       </Drawer>
     </Box>
