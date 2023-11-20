@@ -1,4 +1,4 @@
-export const MyDay=(state=[],action)=>{
+export const Tasks=(state=[],action)=>{
    switch (action.type) {
        case 'AddTask':
         return  [...state,action.payload]

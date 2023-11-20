@@ -2,20 +2,20 @@
 import { createStore,combineReducers,applyMiddleware } from "redux";
 import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from "redux-thunk";
-import { MyDay,Update ,RightSide} from "./reducer";
+import { Tasks,Update ,RightSide} from "./reducer";
 
 const reducerc=combineReducers({
-  myDay:MyDay,
+ Tasks,
   update:Update,
   rightSide:RightSide
   
 })
 
-const Day=localStorage.getItem("myDay") ? JSON.parse(localStorage.getItem("myDay")) :[]
+const Day=localStorage.getItem("Tasks") ? JSON.parse(localStorage.getItem("Tasks")) :[]
 
 
 const initialState={
-  myDay:Day
+  Tasks:Day
 }
 const middleware=[thunk]
 export const store = createStore(reducerc,initialState,composeWithDevTools(applyMiddleware(...middleware)))
