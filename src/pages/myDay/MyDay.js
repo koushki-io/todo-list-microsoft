@@ -20,18 +20,14 @@ function MyDay({OpenCloseSideHandler,openClose}) {
   const formattedDate = today.format('MMMM Do'); 
   const dayOfWeek = format(new Date(), 'EEEE');
 const myDay=useSelector(x=>x.myDay)
-const UPDATE=useSelector(x=>x.update)
+const update=useSelector(x=>x.update)
 const  dispatch=useDispatch()
 
 
-// const closeDropdown =()=>{
 
-
-// }
-// document.addEventListener("scroll",closeDropdown)
 const scrollHandler=()=>{
   dispatch(CloseDropDownAction())
-dispatch(UpdateAction())
+  dispatch(UpdateAction())
 }
 
   return (
@@ -58,12 +54,9 @@ dispatch(UpdateAction())
        <div className={styles.rightSide}></div>
        
         </div>
-
         <div className={styles.main} >
         <AddTask />
-
           <div onScroll={scrollHandler} className={styles.tasks}>
-
           { myDay.map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>
         <Acordion />

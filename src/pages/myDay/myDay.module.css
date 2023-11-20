@@ -1,8 +1,8 @@
 .myParent{
     width: 100%;
-    /* height: 100vh; */
+    height: 100%;
     box-sizing: border-box;
-    /* color: blue; */
+    /* background-color: blue; */
 }
 .header{
     display: flex;
@@ -33,8 +33,9 @@
 }
 .main{
     width: 100%;
+    /* background-color: rgb(73, 37, 37); */
     
-    /* height:auto;  */
+    height:100%; 
     overflow: hidden;
     padding-top: 40px;
 }
@@ -42,25 +43,34 @@
     color: blue;
 
     /* background-color: rgb(227, 225, 225); */
-    height: 50vh;
+    height:calc(100% - 220px); 
+
     overflow: auto;
 }
 
-.tasks::-webkit-scrollbar{
+
+.tasks {
+    scrollbar-width: thin; 
+    scrollbar-color: #2564CF #a9a6a4; 
+}
+
+
+.tasks::-webkit-scrollbar {
     width: 5px;
-    }
-    
-    .tasks::-webkit-scrollbar-thumb{
+ 
+}
+
+.tasks::-webkit-scrollbar-thumb {
     background: #2564CF;
-    border-radius: 4px;
-    }
-    
-    .tasks::-webkit-scrollbar-thumb:hover{
-    background:rgb(76, 75, 75);
-    }
-    
-    .tasks::-webkit-scrollbar-track{
+    border-radius: 20px;
+}
+
+.tasks::-webkit-scrollbar-thumb:hover {
+    background: rgb(76, 75, 75);
+}
+
+.tasks::-webkit-scrollbar-track {
     background: #a9a6a4;
-    border-radius: 0px;
+    border-radius: 20px;
     box-shadow: inset 0px 0px 0px 0px #F0F0F0;
-    } 
+}
