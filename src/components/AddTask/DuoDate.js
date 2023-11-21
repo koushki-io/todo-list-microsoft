@@ -81,8 +81,8 @@ export default function DuoDate({inRightSide}) {
   </div>
               :
               <Tooltip title="Add duo date">
-              <IconButton> 
-              <CalendarMonthIcon onClick={handleClick}  />
+              <IconButton onClick={handleClick}> 
+              <CalendarMonthIcon   />
                
                </IconButton>
             </Tooltip>

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TaskItem from '../taskItem/TaskItem';
 
-export default function Acordion() {
+export default function Acordion({tasks}) {
 
   return (
     <div>
@@ -16,12 +16,12 @@ export default function Acordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Completed 1</Typography>
+          <Typography>Completed {tasks.length}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-          {/* <TaskItem data={data} /> */}
-          </Typography>
+        { tasks.map((item,key)=><TaskItem key={key} data={item}   />)}
+         
+         
         </AccordionDetails>
       </Accordion>
      

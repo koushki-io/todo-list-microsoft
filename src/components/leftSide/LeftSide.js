@@ -7,15 +7,15 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
-function LeftSide({showSide,OpenCloseSideHandler}) {
+function LeftSide({showSide,OpenCloseSideHandler,countTasks}) {
   
   // ["My Day","Important","Planned","Assigned to me","Tasks"]
   const [menuList, setmenuList] = useState([
-    {name: 'My Day',path:'myday',icon:<LightModeIcon className={styles.icons}/>,count:5 },
-    {name: 'Important',path:'important',icon:<StarBorderIcon className={styles.icons}/>  ,count:5},
-    {name: 'Planned',path:'planned',icon:<CalendarMonthIcon className={styles.icons}/> ,count:5},
-    {name: 'Assigned to me',path:'assignedMe',icon:<PersonOutlineIcon className={styles.icons}/> ,count:5},
-    {name: 'Tasks',path:'tasks',icon:<HomeIcon className={styles.icons}/> ,count:5}
+    {name: 'My Day',path:'myday',icon:<LightModeIcon className={styles.icons}/> },
+    {name: 'Important',path:'important',icon:<StarBorderIcon className={styles.icons}/>  },
+    {name: 'Planned',path:'planned',icon:<CalendarMonthIcon className={styles.icons}/> },
+    {name: 'Assigned to me',path:'assignedMe',icon:<PersonOutlineIcon className={styles.icons}/> },
+    {name: 'Tasks',path:'tasks',icon:<HomeIcon className={styles.icons}/> }
   ])
   const navigate = useNavigate()
   const pathHandler =(path)=>{
@@ -26,12 +26,16 @@ function LeftSide({showSide,OpenCloseSideHandler}) {
       <div className={styles.header} onClick={OpenCloseSideHandler} ><MenuIcon/></div>
       <div className={styles.menu}>
         { menuList.map((item)=>
-      <div key={item.name} 
-      onClick={()=>pathHandler(item.path)} 
-      className={styles.menuItem}>
-        {item.icon} 
+      <div   className={styles.menuBox} key={item.name} 
+      onClick={()=>pathHandler(item.path)} >
+    <div className={styles.menuItem}>
+    {item.icon} 
       <span>{item.name}</span> 
-      <span>{item.count}</span> 
+    </div>
+    <div className={styles.countTasks}>
+      <span>{countTasks[item.path] ? countTasks[item.path] :""}</span> 
+
+    </div>
       </div>)
       }
   

@@ -90,8 +90,8 @@ export default function RemindMe({inRightSide}) {
   </div>
               :
               <Tooltip title="Remind me">
-              <IconButton>
-              <NotificationsNoneIcon onClick={handleClick}/>
+              <IconButton onClick={handleClick}>
+              <NotificationsNoneIcon />
                
               </IconButton>
             </Tooltip>

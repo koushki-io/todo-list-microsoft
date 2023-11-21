@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import MainContent from '../../components/mainContent/MainContent'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-function Important({OpenCloseSideHandler,openClose}) {
+function Important({OpenCloseSideHandler,openClose,setcountTasks}) {
     let Tasks=useSelector(x=>x.Tasks)
     const update=useSelector(x=>x.update)
-    
+  
     Tasks=Tasks.filter(task=>task.important)
- 
-
 
     return <MainContent
     

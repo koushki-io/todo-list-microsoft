@@ -10,11 +10,37 @@ import Important from './pages/important/Important';
 import Planned from './pages/planned/Planned';
 import Tasks from './pages/tasks/Tasks';
 import AssignedMe from './pages/assignedMe/AssignedMe';
+import { useSelector } from 'react-redux';
 
 
 
 function App() {
   const [openClose, setopenClose] = useState(true)
+const meTasks=useSelector(x=>x.Tasks).filter(task=>!task.completed)
+const important=meTasks.filter(task=>task.important)
+const myday=meTasks.filter(task=>task.myDay)
+
+const update=useSelector(x=>x.update)
+
+  const [countTasks, setcountTasks] = useState({
+    myday:myday.length,
+    important:important.length,
+    planned:0,
+    assignedMe:0,
+    tasks:meTasks.length
+  })
+  useEffect(() => {
+    setcountTasks(
+      {
+        myday:myday.length,
+        important:important.length,
+        planned:0,
+        assignedMe:0,
+        tasks:meTasks.length
+      }
+    )
+  }, [update])
+  
 
 
   const OpenCloseSideHandler=()=>{
@@ -25,20 +51,20 @@ function App() {
    <>
    
     <BrowserRouter>
-   <Layout openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}>
+   <Layout openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler} countTasks={countTasks}>
 
     <Routes>
     <Route path='/myday'
-    element={<MyDay  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<MyDay setcountTasks={setcountTasks} openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
     <Route path='/important'
-    element={<Important  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Important setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/planned'
-    element={<Planned  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Planned setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/tasks'
-    element={<Tasks  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Tasks setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/assignedMe'
-    element={<AssignedMe  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<AssignedMe setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>

@@ -88,8 +88,8 @@ export default function Repeat({inRightSide}) {
       </div>
                   :
                   <Tooltip title="Repeat">
-                  <IconButton>
-                  <LoopIcon onClick={handleClick}/>
+                  <IconButton onClick={handleClick}>
+                  <LoopIcon />
                    
                   </IconButton>
                 </Tooltip>

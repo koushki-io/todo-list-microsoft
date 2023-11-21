@@ -38,8 +38,23 @@
     gap: 20px;
     box-sizing: border-box;
     padding: 20px;
+
 }
-.menuItem:hover{
+.menuBox{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all ease-in .3s;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+}
+.countTasks{
+    padding: 20px;
+}
+.menuBox:hover{
+    transition: all ease-in .3s;
 background: #f1f1ff;
 }
 .borderBox{

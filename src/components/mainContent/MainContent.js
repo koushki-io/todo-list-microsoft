@@ -23,6 +23,7 @@ function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon,important,m
 const update=useSelector(x=>x.update)
 const  dispatch=useDispatch()
 
+const completeTasks=Tasks.filter(task=>task.completed)
 
 
 const scrollHandler=()=>{
@@ -59,9 +60,10 @@ const scrollHandler=()=>{
         <div className={styles.main} >
         <AddTask  important={important} myDay={myDay}/>
           <div onScroll={scrollHandler} className={styles.tasks}>
-          { Tasks.map((item,key)=><TaskItem key={key} data={item}   />)}
+          { Tasks.filter(task=>!task.completed).map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>
-        <Acordion />
+           {completeTasks.length ? <Acordion  tasks={completeTasks}/>: null}
+         
           </div>
         
         

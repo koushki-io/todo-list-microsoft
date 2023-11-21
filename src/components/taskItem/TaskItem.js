@@ -86,7 +86,7 @@ dispatch(UpdateAction())
    
 
 
- <div classNam={styles.taskContent}>
+ <div className={styles.taskContent}>
         <div className={styles.title}>
             <span>{data.name}</span>
         </div>
