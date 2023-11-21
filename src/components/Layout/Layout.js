@@ -13,13 +13,17 @@ function Layout(props) {
   return (
     <div className={styles.parent} >
       <div className={styles.navbar}>
+
           <Navabr/>
       </div>
 <div className={styles.main}>
     <div className={styles.leftSide}>
           <LeftSide  showSide={props.openClose}  OpenCloseSideHandler={props.OpenCloseSideHandler} />
-          <RightSide/>
       </div>
+    <div className={styles.rightSide}>
+    <RightSide/>
+      </div>
+          
   <div className={props.openClose? styles.content: styles.contentSideOff}>
          {props.children}
      </div>

@@ -4,9 +4,9 @@ import DuoDate from './DuoDate';
 import RemindMe from './RemindMe';
 import Repeat from './Repeat';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddTaskAction } from '../../redux/action';
+import { AddTaskAction } from '../redux/action';
 import { v4 } from 'uuid';
-function AddTask() {
+function AddTask({important,myDay}) {
   const generateShortId = () => {
     const fullId = v4(); 
     const shortId = fullId.substr(0, 8); 
@@ -21,7 +21,8 @@ e.preventDefault()
 if(changValue){
 const myObj={
   name:changValue,
-  important:false,
+  myDay:myDay? true :false,
+  important: important? true :false,
   completed:false,
   dropDown:false,
   id:taskId

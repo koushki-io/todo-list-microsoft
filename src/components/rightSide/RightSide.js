@@ -20,7 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeCompletedAction, ChangeImportantAction, DeleteAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, DeleteAction, OpenCloseRightSide, UpdateAction } from '../redux/action';
 import  CheckBox  from '../taskItem/checkBox/CheckBox';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';

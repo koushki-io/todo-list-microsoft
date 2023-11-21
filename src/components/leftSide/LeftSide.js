@@ -6,20 +6,35 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import HomeIcon from '@mui/icons-material/Home';
+import { useNavigate } from 'react-router-dom';
 function LeftSide({showSide,OpenCloseSideHandler}) {
   
-
-  const [menuList, setmenuList] = useState(["My Day","Important","Planned","Assigned to me","Tasks"])
+  // ["My Day","Important","Planned","Assigned to me","Tasks"]
+  const [menuList, setmenuList] = useState([
+    {name: 'My Day',path:'myday',icon:<LightModeIcon className={styles.icons}/>,count:5 },
+    {name: 'Important',path:'important',icon:<StarBorderIcon className={styles.icons}/>  ,count:5},
+    {name: 'Planned',path:'planned',icon:<CalendarMonthIcon className={styles.icons}/> ,count:5},
+    {name: 'Assigned to me',path:'assignedMe',icon:<PersonOutlineIcon className={styles.icons}/> ,count:5},
+    {name: 'Tasks',path:'tasks',icon:<HomeIcon className={styles.icons}/> ,count:5}
+  ])
+  const navigate = useNavigate()
+  const pathHandler =(path)=>{
+    navigate(`./${path}`)
+  }
   return (
     <div className={showSide ? styles.parent :styles.parentOff }>
       <div className={styles.header} onClick={OpenCloseSideHandler} ><MenuIcon/></div>
       <div className={styles.menu}>
-        <div className={styles.menuItem}><LightModeIcon className={styles.icons}/> <span>My Day</span> </div>
-        <div className={styles.menuItem}><StarBorderIcon className={styles.icons}/> <span>Important</span> </div>
-        <div className={styles.menuItem}><CalendarMonthIcon className={styles.icons}/> <span>Planned</span> </div>
-        <div className={styles.menuItem}><PersonOutlineIcon className={styles.icons}/> <span>Assigned to me</span> </div>
-        <div className={styles.menuItem}><HomeIcon className={styles.icons} /> <span>Tasks</span> </div>
-        
+        { menuList.map((item)=>
+      <div key={item.name} 
+      onClick={()=>pathHandler(item.path)} 
+      className={styles.menuItem}>
+        {item.icon} 
+      <span>{item.name}</span> 
+      <span>{item.count}</span> 
+      </div>)
+      }
+  
       </div>
       <div className={styles.borderBox} >
       <div className={styles.border} ></div>

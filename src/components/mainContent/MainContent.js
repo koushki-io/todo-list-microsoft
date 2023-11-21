@@ -11,11 +11,11 @@ import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../taskItem/TaskItem';
 import Acordion from '../Acordion/Acordion';
 import { useDispatch, useSelector } from 'react-redux';
-import { CloseDropDownAction, UpdateAction } from '../../redux/action';
+import { CloseDropDownAction, UpdateAction } from '../redux/action';
 
 
 
-function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon}) {
+function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon,important,myDay}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
@@ -57,7 +57,7 @@ const scrollHandler=()=>{
        
         </div>
         <div className={styles.main} >
-        <AddTask />
+        <AddTask  important={important} myDay={myDay}/>
           <div onScroll={scrollHandler} className={styles.tasks}>
           { Tasks.map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>

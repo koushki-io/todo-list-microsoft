@@ -5,7 +5,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './dropDown.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteAction, OpenCloseRightSide, UpdateAction } from '../../../redux/action';
+import { DeleteAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
 function DropDownMenu({client,id,}) {
 const dispatch=useDispatch()
 

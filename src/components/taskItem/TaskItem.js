@@ -2,7 +2,7 @@ import React,{useEffect, useRef, useState} from 'react'
 import styles from './taskItem.module.css'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { ChangeImportantAction,TaskRightSide,ChangeCompletedAction, ChangeDropDownAction, CloseDropDownAction, UpdateAction, OpenCloseRightSide } from '../../redux/action';
+import { ChangeImportantAction,TaskRightSide,ChangeCompletedAction, ChangeDropDownAction, CloseDropDownAction, UpdateAction, OpenCloseRightSide } from '../redux/action';
 import { useDispatch } from 'react-redux';
 import DropDownMenu from './dropMenu/DropDownMenu';
 import  CheckBox  from './checkBox/CheckBox';
