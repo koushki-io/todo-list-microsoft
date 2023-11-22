@@ -1,9 +1,29 @@
+.rightSide{
+    
+    position: relative;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-left: 1px solid #eeebeb;
+    height: calc(100vh - 50px);
+    background-color: #FAF9F8;
+    transition: all ease-in .3s;
+}
+
 .headerParent{
     display: flex;
     width: 100%;
     padding: 10px;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+
 }
 
 .BoxLeft{
@@ -13,16 +33,63 @@
     gap: 10px;
 }
 .listItem{
+  
+    background-color: #fff;
     display: flex;
+    width: 100%;
     align-items: center;
     padding: 10px;
     cursor: pointer;
     gap: 5px;
     transition: all ease-in .3s;
+    border-radius: 4px;
+
   
 }
-.listItem:hover{
-    background-color: #e2c1c1;
-    transition: all ease-in .3s;
+.addMyDay{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    /* cursor: pointer; */
+    border-radius: 4px;
+    margin-bottom: 10px;
 
+}
+.addMyDay div{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.listItem:hover{
+    background-color:#FAF9F8;
+
+}
+.addMyDay:hover{
+    background-color:#FAF9F8;
+
+}
+
+.boxFooter{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.boxFooter div{
+    border-top: 1px solid #b9b8b6;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.boxFooter div {
+    color: black;
 }

@@ -10,15 +10,19 @@ export default function Acordion({tasks}) {
 
   return (
     <div>
-      <Accordion>
+      <Accordion >
         <AccordionSummary
+        style={{backgroundColor:"#FAF9F8"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <Typography>Completed {tasks.length}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+        </AccordionSummary  >
+
+        <AccordionDetails
+        style={{backgroundColor:"#FAF9F8"}}
+        >
         { tasks.map((item,key)=><TaskItem key={key} data={item}   />)}
          
          

@@ -1,4 +1,3 @@
-
 export const AddTaskAction=(task)=>(dispatch,getstate)=>{
  dispatch({type:'AddTask', payload:task})
  localStorage.setItem("Tasks",JSON.stringify(getstate().Tasks))
@@ -16,11 +15,16 @@ export const ChangeImportantAction=(ID)=>(dispatch,getstate)=>{
 
 export const ChangeCompletedAction=(ID)=>(dispatch,getstate)=>{
   
-    const mayDay=getstate().Tasks
-    const getItem=mayDay.findIndex(f=>f.id===ID)
-    mayDay[getItem].completed=!mayDay[getItem].completed
-    dispatch({type:'ChangImportant', payload:mayDay})
-  localStorage.setItem("Tasks",JSON.stringify(mayDay))
+    const myDay=getstate().Tasks
+   
+    const getItem=myDay.forEach(element => {
+      if (element.id===ID) {
+        element.completed=!element.completed
+      }
+    });
+
+    dispatch({type:'ChangImportant', payload:myDay})
+  localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
 
 export const ChangeDropDownAction=(ID)=>(dispatch,getstate)=>{
@@ -69,4 +73,17 @@ export const TaskRightSide=(task)=>(dispatch,getstate)=>{
 
 }
 
+export const ChangeMyDayAction=(ID,changed)=>(dispatch,getstate)=>{
+  // const audio= new Audio()
+  
+  const myDay=getstate().Tasks
+  const getItem=myDay.forEach(element => {
+    if (element.id===ID) {
+      element.myDay=changed
+    }
+  });
+
+  dispatch({type:'ChangImportant', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}
 

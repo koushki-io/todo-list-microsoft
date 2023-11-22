@@ -6,6 +6,7 @@ import { ChangeImportantAction,TaskRightSide,ChangeCompletedAction, ChangeDropDo
 import { useDispatch } from 'react-redux';
 import DropDownMenu from './dropMenu/DropDownMenu';
 import  CheckBox  from './checkBox/CheckBox';
+import Notification  from "../../audio/mixkit-correct-answer-tone-2870 (mp3cut.net).mp3"
 
 function TaskItem({data}) {
 
@@ -37,6 +38,12 @@ dispatch(UpdateAction())
   }
 
   const chackedHandler =()=>{
+    const audio = new Audio(Notification)
+    if (!data.completed) {
+     
+      audio.play()
+    }
+    
     dispatch(ChangeCompletedAction(data.id))
 dispatch(UpdateAction())
 

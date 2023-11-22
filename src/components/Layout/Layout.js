@@ -20,13 +20,14 @@ function Layout(props) {
     <div className={styles.leftSide}>
           <LeftSide  countTasks={props.countTasks} showSide={props.openClose}  OpenCloseSideHandler={props.OpenCloseSideHandler} />
       </div>
-    <div className={styles.rightSide}>
-    <RightSide/>
-      </div>
+ 
           
   <div className={props.openClose? styles.content: styles.contentSideOff}>
          {props.children}
      </div>
+     <div className={styles.rightSide}>
+    <RightSide/>
+      </div>
 </div>
     </div>
   );
