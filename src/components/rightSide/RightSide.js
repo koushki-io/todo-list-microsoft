@@ -1,28 +1,10 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import CloseIcon from '@mui/icons-material/Close';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, DeleteAction, OpenCloseRightSide, UpdateAction } from '../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, DeleteAction, OpenCloseRightSide, StepTaskActon, UpdateAction } from '../redux/action';
 import  CheckBox  from '../taskItem/checkBox/CheckBox';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -35,11 +17,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Notification from "../../audio/mixkit-correct-answer-tone-2870 (mp3cut.net).mp3"
 
+import { v4 } from 'uuid';
+import StepsBox from './StepsBox';
+
 
 
 
 export default function PersistentDrawerRight() {
-  const theme = useTheme();
 const {show : Open}=useSelector(x=>x.rightSide)
 const {task}=useSelector(x=>x.rightSide)
 const UPDATE=useSelector(x=>x.update)
@@ -50,8 +34,31 @@ useEffect(() => {
 
 
 
-
+const generateShortId = () => {
+  const fullId = v4(); 
+  const shortId = fullId.substr(0, 8); 
+  return shortId;
+};
+const stepId=generateShortId()
 const dispatch= useDispatch()
+const [changValue, setchangValue] = useState('')
+
+const addStepHandler=(e)=>{
+e.preventDefault()
+const step={
+  name:changValue,
+  completed:false,
+  id:stepId
+}
+
+
+setchangValue("")
+dispatch(StepTaskActon(task.id,step))
+
+}
+
+
+
 
 
 
@@ -100,23 +107,40 @@ dispatch(UpdateAction())
     <>{task.name && <div style={{width:widthBox,marginRight:!Open?"-300px":"0"}} className={styles.rightSide}>
     
     <div className={styles.headerParent} >
+      <div  className={styles.detilesItem}>
+
             <div className={styles.BoxLeft}>
 
 <CheckBox checked={task.completed} chackedHandler={chackedHandler}  />
 <span>{task.name}</span>
             </div>
             <div className={styles.BoxRight}>
-
-{task.important?  <StarIcon style={{color:"blue"}} onClick={ChangeImportantHandler} />  : <StarBorderIcon style={{color:"blue"}} onClick={ChangeImportantHandler}/>}
-
+           {task.important?
+             <StarIcon style={{color:"blue"}} onClick={ChangeImportantHandler} />  :
+              <StarBorderIcon style={{color:"blue"}} onClick={ChangeImportantHandler}/>}
             </div>
+      </div>
+      {
+
+        task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles={styles}/>)
+      }
+     
+
+              <form onSubmit={addStepHandler} className={styles.formParent}>
+                <div className={styles.boxInput} >
+                    <span>+</span>
+                    <input type="text" value={changValue} onChange={(e)=>setchangValue(e.target.value)} placeholder='Add a Step' name='addstep'/>
+                </div>
+               {changValue.length ? <button type='submit'>Add</button> :null}
+                </form>
+
 
 
           </div>
           
         <div  className={styles.addMyDay}  >
        <div onClick={addMyDay}  style={{width:"100%"}}>
-       <LightModeIcon inRightSide={true}/>
+       <LightModeIcon />
           <span>Add to My Day</span>
        </div>
       
@@ -125,14 +149,14 @@ dispatch(UpdateAction())
 
         <div ref={listItem} className={styles.listItem}>
 
-            <RemindMe inRightSide={true}/>
+            <RemindMe inrightside={true}/>
         </div>
         <div ref={listItem} className={styles.listItem}>
-        <DuoDate inRightSide={true} />
+        <DuoDate inrightside={true} />
 
         </div>
         <div ref={listItem} className={styles.listItem}>
-        <Repeat inRightSide={true}/>
+        <Repeat inrightside={true}/>
 
 
         </div>

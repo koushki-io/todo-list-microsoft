@@ -2,7 +2,7 @@ export const Tasks=(state=[],action)=>{
    switch (action.type) {
        case 'AddTask':
         return  [...state,action.payload]
-       case 'ChangImportant':
+       case 'ChangTask':
         return action.payload
        default:
         return state

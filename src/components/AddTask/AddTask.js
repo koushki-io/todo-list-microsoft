@@ -20,6 +20,7 @@ const dispatch=useDispatch()
 e.preventDefault()
 if(changValue){
 const myObj={
+  step:[],
   name:changValue,
   myDay:myDay? true :false,
   important: important? true :false,

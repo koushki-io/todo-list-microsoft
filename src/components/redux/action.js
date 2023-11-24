@@ -8,7 +8,7 @@ export const ChangeImportantAction=(ID)=>(dispatch,getstate)=>{
     const mayDay=getstate().Tasks
     const getItem=mayDay.findIndex(f=>f.id===ID)
     mayDay[getItem].important=!mayDay[getItem].important
-    dispatch({type:'ChangImportant', payload:mayDay})
+    dispatch({type:'ChangTask', payload:mayDay})
   localStorage.setItem("Tasks",JSON.stringify(mayDay))
 }
 
@@ -23,7 +23,7 @@ export const ChangeCompletedAction=(ID)=>(dispatch,getstate)=>{
       }
     });
 
-    dispatch({type:'ChangImportant', payload:myDay})
+    dispatch({type:'ChangTask', payload:myDay})
   localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
 
@@ -38,7 +38,7 @@ export const ChangeDropDownAction=(ID)=>(dispatch,getstate)=>{
       }
       
     });
-    dispatch({type:'ChangImportant', payload:mayDay})
+    dispatch({type:'ChangTask', payload:mayDay})
     localStorage.setItem("Tasks",JSON.stringify(mayDay))
 }
 export const CloseDropDownAction=(ID)=>(dispatch,getstate)=>{
@@ -47,14 +47,14 @@ export const CloseDropDownAction=(ID)=>(dispatch,getstate)=>{
         element.dropDown=false
     });
   localStorage.setItem("Tasks",JSON.stringify(mayDay))
-  dispatch({type:'ChangImportant', payload:mayDay})
+  dispatch({type:'ChangTask', payload:mayDay})
 
 
 }
 export const DeleteAction=(ID)=>(dispatch,getstate)=>{
     const mayDay=getstate().Tasks
     const data=mayDay.filter(element => element.id!==ID);
-    dispatch({type:'ChangImportant', payload:data})
+    dispatch({type:'ChangTask', payload:data})
   localStorage.setItem("Tasks",JSON.stringify(data))
 
 }
@@ -77,13 +77,79 @@ export const ChangeMyDayAction=(ID,changed)=>(dispatch,getstate)=>{
   // const audio= new Audio()
   
   const myDay=getstate().Tasks
-  const getItem=myDay.forEach(element => {
+  myDay.forEach(element => {
     if (element.id===ID) {
       element.myDay=changed
     }
   });
 
-  dispatch({type:'ChangImportant', payload:myDay})
+  dispatch({type:'ChangTask', payload:myDay})
 localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
 
+export const StepTaskActon=(ID,newStep)=>(dispatch,getstate)=>{
+  // const audio= new Audio()
+  
+  const myDay=getstate().Tasks
+  myDay.forEach(element => {
+    if (element.id===ID) {
+      const step=element.step
+      element.step=[...step,newStep]
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}
+export const StepTaskChangeNameActon=(taskId,stepId,name)=>(dispatch,getstate)=>{
+  // const audio= new Audio()
+  
+  const myDay=getstate().Tasks
+  const getItem=myDay.forEach(element => {
+    if (element.id===taskId) {
+      const steps=element.step
+      steps.map(step=>{
+        if (step.id===stepId){
+          step.name=name
+        }
+      })
+     
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}
+export const StepTaskChangeCopletedActon=(taskId,stepId)=>(dispatch,getstate)=>{
+
+  
+  const myDay=getstate().Tasks
+ myDay.forEach(element => {
+    if (element.id===taskId) {
+      const steps=element.step
+      steps.map(step=>{
+        if (step.id===stepId){
+          const completed=step.completed
+          step.completed=!completed
+        }
+      })
+     
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}
+export const StepTaskDeleteActon=(taskId,stepId)=>(dispatch,getstate)=>{
+  const myDay=getstate().Tasks
+ myDay.forEach(element => {
+    if (element.id===taskId) {
+      const steps=element.step.filter(step=>(step.id!==stepId)  )
+     
+      element.step=steps
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}

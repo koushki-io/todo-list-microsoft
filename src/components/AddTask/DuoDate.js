@@ -59,7 +59,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DuoDate({inRightSide}) {
+export default function DuoDate({inrightside}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -74,7 +74,7 @@ export default function DuoDate({inRightSide}) {
 
   return (
     <div style={{ width:"100%"}}>
-       {inRightSide ?
+       {inrightside ?
   <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
   <CalendarMonthIcon onClick={handleClick}  />
     <span>Today</span>

@@ -65,7 +65,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function RemindMe({inRightSide}) {
+export default function RemindMe({inrightside}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -83,7 +83,7 @@ export default function RemindMe({inRightSide}) {
 
 
 
-{inRightSide ?
+{inrightside ?
   <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
   <NotificationsNoneIcon onClick={handleClick}  />
     <span>Remind me</span>

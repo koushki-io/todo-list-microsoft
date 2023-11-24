@@ -63,7 +63,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Repeat({inRightSide}) {
+export default function Repeat({inrightside}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -81,7 +81,7 @@ export default function Repeat({inRightSide}) {
 
 
 
-    {inRightSide ?
+    {inrightside ?
       <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
       <LoopIcon onClick={handleClick}  />
         <span>Remind me</span>

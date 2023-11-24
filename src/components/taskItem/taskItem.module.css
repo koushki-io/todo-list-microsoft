@@ -28,11 +28,21 @@
   width: auto;
   color: #000;
 }
+.subTitle{
+  display: flex;
+}
 .rightSide{
+  white-space: nowrap;
   color: blue;
+}
+.task span{
+  display: flex;
+  white-space: nowrap;
 }
 .task{
   color: #000;
+  display: flex;
+  white-space: nowrap;
 
 }
 .title span{

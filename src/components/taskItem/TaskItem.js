@@ -80,7 +80,8 @@ dispatch(UpdateAction())
 
     }
 
-  
+ const countStep=data.step.length
+ const countCopletedStep=data.step.filter(item=>item.completed).length
   return (
    <div>
      <div className={styles.parent_item_list}  >
@@ -97,9 +98,13 @@ dispatch(UpdateAction())
         <div className={styles.title}>
             <span>{data.name}</span>
         </div>
-        <div className={styles.task}>
-            <span>Task</span>
+      <div className={styles.subTitle}>
+      <div className={styles.task}>
+            <span>Task </span>
+            {countStep? <span>. . . {countCopletedStep} of {countStep} </span> :null}
         </div>
+      </div>
+
 
  </div>
 
