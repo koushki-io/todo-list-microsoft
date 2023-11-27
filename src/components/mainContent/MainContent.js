@@ -15,7 +15,7 @@ import { CloseDropDownAction, UpdateAction } from '../redux/action';
 
 
 
-function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon,important,myDay}) {
+function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon,important,myDay,group}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
@@ -58,7 +58,7 @@ const scrollHandler=()=>{
        
         </div>
         <div className={styles.main} >
-        <AddTask  important={important} myDay={myDay}/>
+        <AddTask group={group}  important={important} myDay={myDay}/>
           <div onScroll={scrollHandler} className={styles.tasks}>
           { Tasks.filter(task=>!task.completed).map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>

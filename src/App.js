@@ -11,6 +11,7 @@ import Planned from './pages/planned/Planned';
 import Tasks from './pages/tasks/Tasks';
 import AssignedMe from './pages/assignedMe/AssignedMe';
 import { useSelector } from 'react-redux';
+import DaynamicGroup from './pages/dynamicPage/DaynamicGroup';
 
 
 
@@ -19,6 +20,8 @@ function App() {
 const meTasks=useSelector(x=>x.Tasks).filter(task=>!task.completed)
 const important=meTasks.filter(task=>task.important)
 const myday=meTasks.filter(task=>task.myDay)
+
+
 
 const update=useSelector(x=>x.update)
 
@@ -65,6 +68,8 @@ const update=useSelector(x=>x.update)
     element={<Tasks setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/assignedMe'
     element={<AssignedMe setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    <Route path='/groups/:group'
+    element={<DaynamicGroup setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>
