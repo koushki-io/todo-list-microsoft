@@ -27,8 +27,11 @@ export default function PersistentDrawerRight() {
 const {show : Open}=useSelector(x=>x.rightSide)
 const {task}=useSelector(x=>x.rightSide)
 const UPDATE=useSelector(x=>x.update)
+
 const [widthBox, setwidthBox] = useState(300);
 const [Note, setNote] = useState(task.note)
+
+
 useEffect(() => {
   setwidthBox(Open?300:0)
   setNote(task.note)
@@ -50,6 +53,7 @@ const generateShortId = () => {
   const shortId = fullId.substr(0, 8); 
   return shortId;
 };
+
 const stepId=generateShortId()
 const [changValue, setchangValue] = useState('')
 

@@ -6,7 +6,7 @@ import Repeat from './Repeat';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddTaskAction } from '../redux/action';
 import { v4 } from 'uuid';
-function AddTask({important,myDay}) {
+function AddTask({important,myDay,group}) {
   const generateShortId = () => {
     const fullId = v4(); 
     const shortId = fullId.substr(0, 8); 
@@ -20,6 +20,7 @@ const dispatch=useDispatch()
 e.preventDefault()
 if(changValue){
 const myObj={
+  group,
   step:[],
   name:changValue,
   myDay:myDay? true :false,

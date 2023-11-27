@@ -167,3 +167,6 @@ export const ChangeNoteAction=(ID,note)=>(dispatch,getstate)=>{
   dispatch({type:'ChangTask', payload:myDay})
 localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
+export const AddNewListAction=(newList)=>(dispatch,getstate)=>{
+  dispatch({type:'addList', payload:newList})
+}
