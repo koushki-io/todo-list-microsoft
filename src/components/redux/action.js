@@ -153,3 +153,17 @@ export const StepTaskDeleteActon=(taskId,stepId)=>(dispatch,getstate)=>{
   dispatch({type:'ChangTask', payload:myDay})
 localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
+
+export const ChangeNoteAction=(ID,note)=>(dispatch,getstate)=>{
+  // const audio= new Audio()
+  
+  const myDay=getstate().Tasks
+  myDay.forEach(element => {
+    if (element.id===ID) {
+      element.note=note
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
+}

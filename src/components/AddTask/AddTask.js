@@ -26,7 +26,9 @@ const myObj={
   important: important? true :false,
   completed:false,
   dropDown:false,
-  id:taskId
+  id:taskId,
+  note:"Add a not"
+  
 }
   setchangValue("")
   dispatch(AddTaskAction(myObj))

@@ -4,7 +4,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, DeleteAction, OpenCloseRightSide, StepTaskActon, UpdateAction } from '../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, ChangeNoteAction, DeleteAction, OpenCloseRightSide, StepTaskActon, UpdateAction } from '../redux/action';
 import  CheckBox  from '../taskItem/checkBox/CheckBox';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -28,9 +28,20 @@ const {show : Open}=useSelector(x=>x.rightSide)
 const {task}=useSelector(x=>x.rightSide)
 const UPDATE=useSelector(x=>x.update)
 const [widthBox, setwidthBox] = useState(300);
+const [Note, setNote] = useState(task.note)
 useEffect(() => {
   setwidthBox(Open?300:0)
+  setNote(task.note)
 }, [UPDATE]);
+const dispatch= useDispatch()
+
+
+const changeNote=(e)=>{
+  setNote(e.target.value)
+}
+const saveNote=(e)=>{
+  dispatch(ChangeNoteAction(task.id,Note))
+}
 
 
 
@@ -40,7 +51,6 @@ const generateShortId = () => {
   return shortId;
 };
 const stepId=generateShortId()
-const dispatch= useDispatch()
 const [changValue, setchangValue] = useState('')
 
 const addStepHandler=(e)=>{
@@ -104,7 +114,8 @@ dispatch(UpdateAction())
 
 
   return (
-    <>{task.name && <div style={{width:widthBox,marginRight:!Open?"-300px":"0"}} className={styles.rightSide}>
+    <>{task.name && <div 
+     style={{width:widthBox,marginRight:!Open?"-300px":"0"}} className={styles.rightSide}>
     
     <div className={styles.headerParent} >
       <div  className={styles.detilesItem}>
@@ -120,24 +131,28 @@ dispatch(UpdateAction())
               <StarBorderIcon style={{color:"blue"}} onClick={ChangeImportantHandler}/>}
             </div>
       </div>
-      {
 
-        task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles={styles}/>)
-      }
-     
-
-              <form onSubmit={addStepHandler} className={styles.formParent}>
-                <div className={styles.boxInput} >
-                    <span>+</span>
-                    <input type="text" value={changValue} onChange={(e)=>setchangValue(e.target.value)} placeholder='Add a Step' name='addstep'/>
-                </div>
-               {changValue.length ? <button type='submit'>Add</button> :null}
-                </form>
+      
+   
 
 
 
           </div>
-          
+        <div className={styles.scrollMenu}>
+        {
+
+task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles={styles}/>)
+}
+
+
+      <form onSubmit={addStepHandler} className={styles.formParent}>
+        <div className={styles.boxInput} >
+            <span>+</span>
+            <input type="text" value={changValue} onChange={(e)=>setchangValue(e.target.value)} placeholder='Add a Step' name='addstep'/>
+        </div>
+       {changValue.length ? <button type='submit'>Add</button> :null}
+        </form>
+                    
         <div  className={styles.addMyDay}  >
        <div onClick={addMyDay}  style={{width:"100%"}}>
        <LightModeIcon />
@@ -160,6 +175,20 @@ dispatch(UpdateAction())
 
 
         </div>
+
+
+        <div className={styles.note}>
+        
+        <textarea
+        value={Note}
+        onChange={changeNote}
+        onBlur={saveNote}
+        name="w3review" rows="2" cols="2">
+       
+</textarea>
+        </div>
+        {/* ////////////////// */}
+        </div>
       
             
        
@@ -175,16 +204,10 @@ dispatch(UpdateAction())
         
                 
     
-
-    
-      
     </div>
 
    
 
-      
-
-   
     }
     </>
   );
