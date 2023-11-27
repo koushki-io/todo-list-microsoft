@@ -14,8 +14,6 @@ const reducerc=combineReducers({
 
 const tasks=localStorage.getItem("Tasks") ? JSON.parse(localStorage.getItem("Tasks")) :[]
 const newListSave=localStorage.getItem("newList") ? JSON.parse(localStorage.getItem("newList")) :[]
-console.log(newListSave);
-
 const initialState={
   Tasks:tasks,
   newList:newListSave

@@ -8,6 +8,9 @@ import DropDownMenu from './dropMenu/DropDownMenu';
 import  CheckBox  from './checkBox/CheckBox';
 import Notification  from "../../audio/mixkit-correct-answer-tone-2870 (mp3cut.net).mp3"
 
+
+
+
 function TaskItem({data}) {
 
 const dispatch=useDispatch()
@@ -85,7 +88,7 @@ dispatch(UpdateAction())
   return (
    <div>
      <div className={styles.parent_item_list}  >
-{data.dropDown &&  <DropDownMenu client={client} id={data.id} show={data.dropDown} />}
+{data.dropDown &&  <DropDownMenu  client={client} id={data.id} show={data.dropDown} />}
 
 
 <div className={styles.leftSide}>

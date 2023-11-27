@@ -5,7 +5,7 @@ function NotFound() {
   const navigate = useNavigate();
   useEffect(() => {
 
-      navigate("/mayday")
+      navigate("/myday")
   }, [])
   
   
