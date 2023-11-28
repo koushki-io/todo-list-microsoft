@@ -63,7 +63,6 @@ export const UpdateAction=(ID)=>(dispatch,getstate)=>{
 
 }
 export const OpenCloseRightSide=(flag)=>(dispatch,getstate)=>{
-
     dispatch({type:'OpenCloseRightSide', payload:flag})
 
 }

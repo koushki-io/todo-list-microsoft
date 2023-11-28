@@ -5,9 +5,9 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './dropDown.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteAction, DeleteListAction, DeleteTaskInList, UpdateAction } from '../../redux/action';
+import { DeleteAction, DeleteListAction, DeleteTaskInList, OpenCloseRightSide, UpdateAction } from '../../redux/action';
 import { useNavigate } from 'react-router-dom';
-function DropDownMenu({client,path}) {
+function DropDownMenu({client,path,CloseDropDoun}) {
 const dispatch=useDispatch()
 const navigate=useNavigate()
 
@@ -20,6 +20,8 @@ const deleteHandler=()=>{
 
   navigate("/tasks")
 
+  CloseDropDoun()
+  dispatch(OpenCloseRightSide(false))
 
 
 

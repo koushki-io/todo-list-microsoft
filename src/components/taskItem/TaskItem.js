@@ -76,19 +76,20 @@ dispatch(UpdateAction())
 
 
  const parentRef = useRef()
-  window.oncontextmenu = function(event) {
-    if (event.target.className !== parentRef.current.className) {
-      closeDropdown()
-    }
+  // window.oncontextmenu = function(event) {
+  //   if (event.target.className !== parentRef.current.className) {
+  //     closeDropdown()
+  //   }
 
-    }
+  //   }
 
  const countStep=data.step.length
  const countCopletedStep=data.step.filter(item=>item.completed).length
   return (
    <div>
-     <div className={styles.parent_item_list}  >
-{data.dropDown &&  <DropDownMenu  client={client} id={data.id} show={data.dropDown} />}
+     <div 
+     className={styles.parent_item_list}   onContextMenu={onContextMenuHandler}  ref={parentRef} >
+{data.dropDown &&  <DropDownMenu  client={client} task={data} show={data.dropDown} />}
 
 
 <div className={styles.leftSide}>
@@ -112,7 +113,7 @@ dispatch(UpdateAction())
  </div>
 
 </div>
-<div className={styles.centerSide} onClick={clickHandler} onContextMenu={onContextMenuHandler}  ref={parentRef}  > 
+<div className={styles.centerSide}   onClick={clickHandler}   > 
 
 </div>
 <div className={styles.rightSide}>

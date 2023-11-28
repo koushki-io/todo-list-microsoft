@@ -46,9 +46,9 @@ const scrollHandler=()=>{
         <span >{name}</span> 
         <MoreHorizIcon className={styles.icons}/>
         </div>
-        <div className={styles.date}>
+        { name=="My Day"?<div className={styles.date}>
         <span>{dayOfWeek} { formattedDate}</span>
-        </div>
+        </div> :null}
         
 
 

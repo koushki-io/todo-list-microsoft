@@ -30,6 +30,7 @@ const newList=useSelector(x=>x.newList)
 const Tasks=useSelector(x=>x.Tasks)
 // const listCont=
 const listPath=newList.map((list=>list.path))
+const listName=newList.map((list=>list.name))
 const countList={}
 listPath.map(path=>{
     let count=0
@@ -42,14 +43,6 @@ listPath.map(path=>{
     return countList
 
 })
-
-
-
-
-
-
-
-
 
 
 
@@ -80,11 +73,24 @@ const CloseDropDoun=()=>{
 const addGroupHandler =(e)=>{
     e.preventDefault()
     setInputValue("")
-    const countList={name:inputValue,path:inputValue.replace(/\s/g, '').toLowerCase()}
+
+    
+
+      const originalArray = [...listName,inputValue];
+      const resultArray = updateNamesArray(originalArray);
+   
+      
+const Path=resultArray[resultArray.length-1].replace(/\s/g, '').toLowerCase()
+    const countList={name:resultArray[resultArray.length-1],path:Path}
     if(inputValue.length){
 
         dispatch(AddNewListAction(countList))
+setTimeout(() => {
+  navigate(`./groups/${Path}`)
+  
+}, 100);
     }
+    
 }
 const listItem=useRef()
 // window.oncontextmenu = function(event) {
@@ -154,7 +160,7 @@ navigate(`./groups/${list.path}`)
  
 </div>
 </div>
-{showDroup ? <DropDownMenu  client={client} path={selectPath}  /> :null}
+{showDroup ? <DropDownMenu CloseDropDoun={CloseDropDoun} client={client} path={selectPath}  /> :null}
 </div>
 )
 }
@@ -163,3 +169,26 @@ export default LeftSide
 
 
 
+function updateNamesArray(namesArray) {
+    const updatedNames = [];
+  
+    function checkAndUpdateName(name) {
+      if (!updatedNames.includes(name)) {
+        updatedNames.push(name);
+      } else {
+        let count = 1;
+        let newName = `${name} (${count})`;
+        while (updatedNames.includes(newName)) {
+          count++;
+          newName = `${name} (${count})`;
+        }
+        updatedNames.push(newName);
+      }
+    }
+  
+    namesArray.forEach(name => {
+      checkAndUpdateName(name);
+    });
+  
+    return updatedNames;
+  }

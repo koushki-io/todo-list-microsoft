@@ -28,6 +28,30 @@
     gap: 10px;
 
 }
+
+
+.deprecated{
+    position: relative;
+    transform: rotate(45deg);
+    padding: -10px;
+    color: rgb(130, 128, 126);
+
+}
+  .deprecated::before {
+    content: ''; /* محتوای خود عنصر */
+    position: absolute;
+    width: 25px;
+    margin-top: 10px;
+    transform: rotate(45deg);
+    border-top: 1.5px solid rgb(40, 38, 38); 
+    transform: translateY(-50%); 
+  }
 .item:hover{
-    background-color: #FAF9F8
+    background-color:#eae5e0;
+
+}
+.duedate{
+    border-bottom: 1.5px solid rgb(218, 210, 210);
+    border-top: 1.5px solid rgb(218, 210, 210);
+
 }
