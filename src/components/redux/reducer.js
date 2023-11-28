@@ -35,9 +35,8 @@ export const RightSide=(state={task:{},show:false},action)=>{
 
 export const newList=(state=[],action)=>{
    switch (action.type) {
-      case 'addList':{
-         localStorage.setItem("newList",JSON.stringify([...state,action.payload]))
-         return [...state,action.payload]
+      case 'chanList':{
+         return action.payload
       }
         default:
          return state 

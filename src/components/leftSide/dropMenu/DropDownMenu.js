@@ -5,19 +5,23 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './dropDown.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteAction } from '../../redux/action';
+import { DeleteAction, DeleteListAction, DeleteTaskInList, UpdateAction } from '../../redux/action';
+import { useNavigate } from 'react-router-dom';
 function DropDownMenu({client,path}) {
 const dispatch=useDispatch()
+const navigate=useNavigate()
 
 const {task}=useSelector(x=>x.rightSide)
 
 const deleteHandler=()=>{
-  console.log(path);
-  // dispatch(DeleteAction(id))
-  // dispatch(UpdateAction())
-  // if (task.id===id) {
-  //   dispatch(OpenCloseRightSide(false))
-  // }
+  dispatch(DeleteListAction(path))
+  dispatch(DeleteTaskInList(path))
+  dispatch(UpdateAction(path))
+
+  navigate("/tasks")
+
+
+
 
 }
   return (

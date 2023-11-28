@@ -51,6 +51,8 @@ listPath.map(path=>{
 
 
 
+
+
 const [inputValue, setInputValue ] =useState("")
 const changValueHandler=(e)=>{
 setInputValue(e.target.value)
@@ -85,12 +87,12 @@ const addGroupHandler =(e)=>{
     }
 }
 const listItem=useRef()
-window.oncontextmenu = function(event) {
-    if (event.target.className !== listItem.current.className) {
-        CloseDropDoun()
-    }
+// window.oncontextmenu = function(event) {
+//     if (event.target.className !== listItem.current.className) {
+//         CloseDropDoun()
+//     }
 
-    }
+    // }
 window.onclick = function(event) {
   
     CloseDropDoun()

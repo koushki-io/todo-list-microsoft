@@ -168,8 +168,26 @@ export const ChangeNoteAction=(ID,note)=>(dispatch,getstate)=>{
 localStorage.setItem("Tasks",JSON.stringify(myDay))
 }
 export const AddNewListAction=(newList)=>(dispatch,getstate)=>{
-  dispatch({type:'addList', payload:newList})
+  let myList=getstate().newList
+
+  myList=[...myList,newList]
+
+  localStorage.setItem("newList",JSON.stringify(myList))
+
+  dispatch({type:'chanList', payload:myList})
 }
-// export const AddNewListAction=(newList)=>(dispatch,getstate)=>{
-//   dispatch({type:'addList', payload:newList})
-// }
+
+export const DeleteListAction=(path)=>(dispatch,getstate)=>{
+  let myList=getstate().newList.filter(list=>list.path!==path)
+
+  localStorage.setItem("newList",JSON.stringify(myList))
+
+  dispatch({type:'chanList', payload:myList})
+}
+export const DeleteTaskInList=(path)=>(dispatch,getstate)=>{
+  const mayDay=getstate().Tasks
+  const data=mayDay.filter(element => element.group!==path);
+  dispatch({type:'ChangTask', payload:data})
+localStorage.setItem("Tasks",JSON.stringify(data))
+
+}
