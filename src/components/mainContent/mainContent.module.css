@@ -8,12 +8,18 @@
 }
 .header{
     display: flex;
+    justify-content: space-between;
    
 }
 .leftSide{
     display: flex;
     flex-direction: column;
     color: rgb(75, 70, 70);
+
+}
+.rightSide{
+    display: flex;
+    align-items: center;
 
 }
 .item{

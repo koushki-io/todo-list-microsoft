@@ -105,14 +105,16 @@ window.onclick = function(event) {
     
 
     }
-
+    const scrollHandler=()=>{
+      CloseDropDoun()
+    }
 const pathHandler =(path)=>{
 navigate(`./${path}`)
 }
 return (
 <div className={showSide ? styles.parent :styles.parentOff }>
 <div className={styles.header} onClick={OpenCloseSideHandler} ><MenuIcon/></div>
-<div className={styles.menuParent}>
+<div onScroll={scrollHandler} className={styles.menuParent}>
 <div className={styles.menu}>
 { menuList.map((item)=>
 <div className={styles.menuBox} key={item.name} 

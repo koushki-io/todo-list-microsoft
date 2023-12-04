@@ -5,7 +5,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import styles from './mainContent.module.css'
 import moment from 'moment';
 
-
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { format } from 'date-fns';
 import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../taskItem/TaskItem';
@@ -54,7 +54,9 @@ const scrollHandler=()=>{
 
       
        </div>
-       <div className={styles.rightSide}></div>
+       <div className={styles.rightSide}>
+        <SwapVertIcon/> sort
+       </div>
        
         </div>
         <div className={styles.main} >

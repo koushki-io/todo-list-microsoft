@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -37,7 +37,7 @@ const  ChangeImportantHandler= ()=>{
    dispatch(UpdateAction())
 
 }
-
+const dropD=useRef()
 const chackedHandler =()=>{
   const audio = new Audio(Notification)
  if (!task.completed) {
@@ -49,14 +49,48 @@ const chackedHandler =()=>{
 dispatch(UpdateAction())
 
 }
+const [offsetStyle, setOffsetStyle] = useState({left:client.x-125,top:client.y+125})
+const [flags, setflags] = useState(false)
+
+
+const heightDrop=255
+
+useEffect(()=>{
+  setflags(false)
+ 
+},[client.y])
+useEffect(()=>{
+ 
+  const hp=document.body.offsetHeight -client.y
+
+
+    if (heightDrop>=hp) {
+      setOffsetStyle({left:`${client.x-125}px` ,top:`${client.y - heightDrop -5}px`  })
+    }else{
+      setOffsetStyle({left:`${client.x-125}px` ,top:`${client.y+5}px`  })
+  
+    }
+  
+  
+
+
+    setflags(true)
+
+
+},[client.y])
+
+
+
+
 
   return (
- 
-     <div 
-    style={{left:`${client.x-125}px` ,top:`${client.y+5}px` }} 
+ <div style={{visibility:flags?"visible":"hidden"}}>
+    <div 
+     ref={dropD}
+    style={offsetStyle} 
     className={styles.parent_item} >
 
-<div className={styles.itemMenu}  >
+<div className={styles.itemMenu} >
 
   
 
@@ -89,6 +123,8 @@ dispatch(UpdateAction())
 </div>
 
    </div> 
+ </div>
+   
   )
 }
 

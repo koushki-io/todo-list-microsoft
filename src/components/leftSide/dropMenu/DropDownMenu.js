@@ -29,7 +29,7 @@ const deleteHandler=()=>{
   return (
  
      <div 
-    style={{left:`${client.x}px` ,top:`${client.y+5}px` }} 
+    style={{left:`${client.x}px` ,top:`${client.y-40}px` }} 
     className={styles.parent_item} >
 
 <div className={styles.itemMenu}  >
