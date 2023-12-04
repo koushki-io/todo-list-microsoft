@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './navbar.module.css'
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import Person4SharpIcon from '@mui/icons-material/Person4Sharp';
 import AppsIcon from '@mui/icons-material/Apps';
+import { useNavigate } from 'react-router-dom';
 const Navabr = () => {
+    const [serch,setsetch]=useState()
+    const navigate=useNavigate()
+    const serchHandler=(e)=>{
+        const value=e.target.value
+        navigate(`/serch/${value}`)
+    }
     return (
         <div className={styles.parent}>
             
@@ -17,7 +24,7 @@ const Navabr = () => {
 
         <div className={styles.inputBox}>
         <SearchIcon className={styles.iconSerche} />
-            <input type="search" placeholder='Serch...' className={styles.inputSerche}></input>
+            <input type="search" onChange={serchHandler} placeholder='Serch...' className={styles.inputSerche}></input>
         </div>
 
         <div className={styles.item}>

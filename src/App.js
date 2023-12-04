@@ -12,6 +12,7 @@ import Tasks from './pages/tasks/Tasks';
 import AssignedMe from './pages/assignedMe/AssignedMe';
 import { useSelector } from 'react-redux';
 import DaynamicGroup from './pages/dynamicPage/DaynamicGroup';
+import SerchTasks from './pages/serch/SerchTasks';
 
 
 
@@ -70,6 +71,8 @@ const update=useSelector(x=>x.update)
     element={<AssignedMe setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/groups/:group'
     element={<DaynamicGroup setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    <Route path='/serch/:name'
+    element={<SerchTasks setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>

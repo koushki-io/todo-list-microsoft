@@ -34,7 +34,7 @@
 }
 .menuParent{
     width: 100%;
-    height: calc(100% - 130px);
+    height: calc(100% - 118px);
     overflow-y: auto;
     overflow-x: hidden;
 }
