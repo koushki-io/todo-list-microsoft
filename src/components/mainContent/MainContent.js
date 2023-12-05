@@ -10,7 +10,8 @@ import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../taskItem/TaskItem';
 import Acordion from '../Acordion/Acordion';
 import { useDispatch, useSelector } from 'react-redux';
-import { CloseDropDownAction, UpdateAction } from '../redux/action';
+import { CloseDropDownAction, SortTaskAction, UpdateAction } from '../redux/action';
+import SortComp from "../../components/mainContent/SortComp";
 
 
 
@@ -20,8 +21,7 @@ function MainContent({OpenCloseSideHandler,
   name,
   Icon,important,
   myDay,
-  group,
-  SortComp
+  group
 }) {
 
   const today = moment();
@@ -35,6 +35,15 @@ const completeTasks=Tasks.filter(task=>task.completed)
 
 const scrollHandler=()=>{
   dispatch(CloseDropDownAction())
+  dispatch(UpdateAction())
+}
+
+const sortImportnt=()=>{
+  dispatch(SortTaskAction("important"))
+  dispatch(UpdateAction())
+}
+const sortAlphabetical=()=>{
+  dispatch(SortTaskAction("alphabetical"))
   dispatch(UpdateAction())
 }
 
@@ -62,7 +71,7 @@ const scrollHandler=()=>{
       
        </div>
        <div className={styles.rightSide}>
-        {SortComp? SortComp:null}
+       <SortComp sortAlphabetical={sortAlphabetical} sortImportnt={sortImportnt}/>
         
        </div>
        

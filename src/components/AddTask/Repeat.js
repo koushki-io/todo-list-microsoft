@@ -18,6 +18,8 @@ import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import EventIcon from '@mui/icons-material/Event';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 
@@ -63,7 +65,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Repeat({inrightside}) {
+export default function Repeat({inrightside,setdatetask,datetask}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -74,6 +76,12 @@ export default function Repeat({inrightside}) {
   };
   window.oncontextmenu = function(event) {
     setAnchorEl(null);
+    }
+    const duDateHandlet=(value)=>{
+      setdatetask(last=>{
+        return {...last,repeat:value}
+      })
+      setAnchorEl(null);
     }
 
   return (
@@ -90,6 +98,11 @@ export default function Repeat({inrightside}) {
                   <Tooltip title="Repeat">
                   <IconButton onClick={handleClick}>
                   <LoopIcon />
+                  <div style={{fontSize:"13px",whiteSpace:"nowrap"}}>
+                  {datetask.repeat}
+
+             </div>
+    
                    
                   </IconButton>
                 </Tooltip>
@@ -115,31 +128,32 @@ export default function Repeat({inrightside}) {
         }}>Repeat</h4>
         <Divider sx={{ my: 0.5 }} />
 
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem  onClick={()=>{duDateHandlet("Daily")}} disableRipple>
           <EventIcon />
           Daily
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem  onClick={()=>{duDateHandlet("Weekdays")}} disableRipple>
           <WysiwygIcon />
           Weekdays
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem  onClick={()=>{duDateHandlet("Weekly")}} disableRipple>
           <CalendarViewWeekIcon />
           Weekly
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem  onClick={()=>{duDateHandlet("Monthly")}} disableRipple>
           <CalendarMonthIcon />
           Monthly
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem  onClick={()=>{duDateHandlet("Yearly")}} disableRipple>
           <LibraryAddCheckIcon />
           Yearly
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <PendingActionsIcon />
-          Custom
-        </MenuItem>
+        {datetask.repeat ?
+        <MenuItem  onClick={()=>{duDateHandlet(null)}} disableRipple>
+          <DeleteIcon />
+        Never DeleteIcon
+        </MenuItem> : null }
+        
       </StyledMenu>
     </div>
   );

@@ -15,6 +15,11 @@ function AddTask({important,myDay,group}) {
   const taskId=generateShortId()
 const dispatch=useDispatch()
   const [changValue, setchangValue] = useState('')
+  const [datetask, setdatetask] = useState({
+    duoDate:null,
+    remindMe:null,
+    repeat:null,
+  })
 
   const submitHandler=(e)=>{
 e.preventDefault()
@@ -22,6 +27,9 @@ if(changValue){
 const myObj={
   group,
   step:[],
+  duoDate:datetask.duoDate,
+  remindMe:datetask.remindMe,
+  repeat:datetask.repeat,
   name:changValue,
   myDay:myDay? true :false,
   important: important? true :false,
@@ -33,6 +41,11 @@ const myObj={
 }
   setchangValue("")
   dispatch(AddTaskAction(myObj))
+  setdatetask({
+    duoDate:null,
+    remindMe:null,
+    repeat:null,
+  })
 
 }
   }
@@ -46,10 +59,9 @@ const myObj={
           <div className={styles.item}>
 
           
-            <DuoDate/>
-            <RemindMe/>
-            
-            <Repeat/>
+            <DuoDate setdatetask={setdatetask} datetask={datetask}/>
+            <RemindMe setdatetask={setdatetask} datetask={datetask} />
+            <Repeat setdatetask={setdatetask}  datetask={datetask} />
           
           </div>
           <div className={styles.addButton}>

@@ -59,20 +59,20 @@ const update=useSelector(x=>x.update)
 
     <Routes>
     <Route path='/myday'
-    element={<MyDay setcountTasks={setcountTasks} openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<MyDay  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
     <Route path='/important'
-    element={<Important setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Important   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/planned'
-    element={<Planned setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Planned   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/tasks'
-    element={<Tasks setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Tasks   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/assignedMe'
-    element={<AssignedMe setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<AssignedMe   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/groups/:group'
-    element={<DaynamicGroup setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<DaynamicGroup   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/serch/:name'
-    element={<SerchTasks setcountTasks={setcountTasks}  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<SerchTasks   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>

@@ -17,6 +17,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import NextWeekIcon from '@mui/icons-material/NextWeek';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 
@@ -65,7 +66,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function RemindMe({inrightside}) {
+export default function RemindMe({inrightside,setdatetask,datetask}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -77,6 +78,13 @@ export default function RemindMe({inrightside}) {
   window.oncontextmenu = function(event) {
     setAnchorEl(null);
     }
+    const duDateHandlet=(value)=>{
+      setdatetask(last=>{
+        return {...last,remindMe:value}
+      })
+      setAnchorEl(null);
+    }
+
 
   return (
     <div style={{ width:"100%"}}>
@@ -92,7 +100,9 @@ export default function RemindMe({inrightside}) {
               <Tooltip title="Remind me">
               <IconButton onClick={handleClick}>
               <NotificationsNoneIcon />
-               
+              <div style={{fontSize:"13px",whiteSpace:"nowrap"}}>
+              {datetask.remindMe}
+             </div>
               </IconButton>
             </Tooltip>
 
@@ -117,24 +127,24 @@ export default function RemindMe({inrightside}) {
           alignItems:"center"
         }}>Reminder</h4>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Later today")}} disableRipple>
           <ArrowDropDownIcon />
           Later today
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Tomorrow")}} disableRipple>
           <ArrowRightIcon />
           Tomorrow
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Next week")}} disableRipple>
           <KeyboardDoubleArrowRightIcon />
           Next week
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-
-        <MenuItem onClick={handleClose} disableRipple>
-          <PendingActionsIcon />
-          Pick adate & time
-        </MenuItem>
+       
+          {datetask.remindMe? <MenuItem onClick={()=>{duDateHandlet(null)}} disableRipple>
+          <DeleteIcon />
+          Remove reminder
+        </MenuItem> : null }
+        
       </StyledMenu>
     </div>
   );

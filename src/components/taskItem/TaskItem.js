@@ -7,6 +7,12 @@ import { useDispatch } from 'react-redux';
 import DropDownMenu from './dropMenu/DropDownMenu';
 import  CheckBox  from './checkBox/CheckBox';
 import Notification  from "../../audio/mixkit-correct-answer-tone-2870 (mp3cut.net).mp3"
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import LoopIcon from '@mui/icons-material/Loop';
+
+
+
 
 
 
@@ -98,16 +104,32 @@ dispatch(UpdateAction())
    
 
 
- <div className={styles.taskContent}>
+ <div className={styles.taskContent}   onClick={clickHandler}>
         <div className={styles.title}>
             <span>{data.name}</span>
+          
         </div>
-      <div className={styles.subTitle}>
+  
+      <div className={styles.douDate}>
       <div className={styles.task}>
             <span>Task </span>
-            {countStep? <span>. . . {countCopletedStep} of {countStep} </span> :null}
+            {countStep? <h4 > . {countCopletedStep} of {countStep} </h4> :null}.
+        
         </div>
-      </div>
+             {data.duoDate?<div className={styles.douDateItem}>
+               <CalendarMonthIcon style={{fontSize:"20px"}}/> {data.duoDate}
+               </div>:null}  
+               {data.remindMe?<div className={styles.douDateItem}>
+               <NotificationsNoneIcon style={{fontSize:"20px"}}/>  {data.remindMe}
+                </div>:null}
+                {data.repeat?<div className={styles.douDateItem}>
+                <LoopIcon style={{fontSize:"20px"}}/>  {data.repeat}
+
+               </div>:null}
+               
+ 
+           </div>
+      
 
 
  </div>

@@ -16,6 +16,8 @@ import TodayIcon from '@mui/icons-material/Today';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 const StyledMenu = styled((props) => (
@@ -59,7 +61,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DuoDate({inrightside}) {
+export default function DuoDate({inrightside ,setdatetask,datetask}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -68,21 +70,36 @@ export default function DuoDate({inrightside}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   window.oncontextmenu = function(event) {
     setAnchorEl(null);
+    
     }
+    const duDateHandlet=(value)=>{
+      setdatetask(last=>{
+        return {...last,duoDate:value}
+      })
+      setAnchorEl(null);
+    }
+
 
   return (
     <div style={{ width:"100%"}}>
        {inrightside ?
   <div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
   <CalendarMonthIcon onClick={handleClick}  />
-    <span>Today</span>
+   <span>Duo date</span>
   </div>
               :
               <Tooltip title="Add duo date">
               <IconButton onClick={handleClick}> 
               <CalendarMonthIcon   />
+
+             <div style={{fontSize:"13px",whiteSpace:"nowrap"}}>
+             {datetask.duoDate}
+             </div>
+    
+
                
                </IconButton>
             </Tooltip>
@@ -110,23 +127,25 @@ export default function DuoDate({inrightside}) {
         }}>Duo</h4>
         <Divider sx={{ my: 0.5 }} />
 
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Today")}} disableRipple>
           <TodayIcon />
           Today
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Tomorrow")}} disableRipple>
           <KeyboardArrowRightIcon />
           Tomorrow
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={()=>{duDateHandlet("Next week")}} disableRipple>
           <KeyboardDoubleArrowRightIcon />
           Next week
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <PendingActionsIcon />
-          Pick a date
-        </MenuItem>
+        {datetask.duoDate? <MenuItem onClick={()=>{duDateHandlet(null)}} disableRipple>
+          <DeleteIcon />
+          Remove duo date
+        </MenuItem>  :null}
+      
+       
+      
       </StyledMenu>
     </div>
   );

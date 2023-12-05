@@ -14,18 +14,6 @@ function DaynamicGroup({OpenCloseSideHandler,openClose,setcountTasks}) {
 
   Tasks= Tasks.filter(x=>x.group==group)
 
-  
-  const sortImportnt=()=>{
-    Tasks.sort((a,b)=>b.important-a.important)
-  }
-  const sortAlphabetical=()=>{
-    
-    Tasks.sort(function(a, b){
-      if(a.name < b.name) { return -1; }
-      if(a.name > b.name) { return 1; }
-      return 0;
-  })
-  }
 
 
     return <MainContent
@@ -34,8 +22,6 @@ function DaynamicGroup({OpenCloseSideHandler,openClose,setcountTasks}) {
     name={findName}
      Tasks={Tasks}
      OpenCloseSideHandler={OpenCloseSideHandler} 
-   SortComp={<SortComp sortAlphabetical={sortAlphabetical} sortImportnt={sortImportnt}/>}
-
      openClose={openClose} />
 
 }

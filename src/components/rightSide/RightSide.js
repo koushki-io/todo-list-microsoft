@@ -166,7 +166,7 @@ task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles
            {task.myDay ? <span onClick={removeMyDay} style={{cursor:"pointer",color:"#c1c1c1"}}><CloseIcon style={{fontSize:"20px"}}/></span>: null }
         </div>
 
-        <div ref={listItem} className={styles.listItem}>
+        {/* <div ref={listItem} className={styles.listItem}>
 
             <RemindMe inrightside={true}/>
         </div>
@@ -178,7 +178,7 @@ task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles
         <Repeat inrightside={true}/>
 
 
-        </div>
+        </div> */}
 
 
         <div className={styles.note}>

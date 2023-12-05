@@ -190,3 +190,19 @@ export const DeleteTaskInList=(path)=>(dispatch,getstate)=>{
 localStorage.setItem("Tasks",JSON.stringify(data))
 
 }
+export const SortTaskAction=(sortby)=>(dispatch,getstate)=>{
+  const mayDay=getstate().Tasks
+  let data;
+  if (sortby=="important") {
+    data=mayDay.sort((a,b)=>b.important-a.important)
+  }else{
+    data=mayDay.sort(function(a, b){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+  })
+  }
+  dispatch({type:'ChangTask', payload:data})
+localStorage.setItem("Tasks",JSON.stringify(data))
+
+}
