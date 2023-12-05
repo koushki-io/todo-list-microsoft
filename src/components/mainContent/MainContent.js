@@ -5,7 +5,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import styles from './mainContent.module.css'
 import moment from 'moment';
 
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { format } from 'date-fns';
 import AddTask from '../../components/AddTask/AddTask';
 import TaskItem from '../taskItem/TaskItem';
@@ -15,7 +14,15 @@ import { CloseDropDownAction, UpdateAction } from '../redux/action';
 
 
 
-function MainContent({OpenCloseSideHandler,openClose,Tasks,name,Icon,important,myDay,group}) {
+function MainContent({OpenCloseSideHandler,
+  openClose,
+  Tasks,
+  name,
+  Icon,important,
+  myDay,
+  group,
+  SortComp
+}) {
 
   const today = moment();
   const formattedDate = today.format('MMMM Do'); 
@@ -55,7 +62,8 @@ const scrollHandler=()=>{
       
        </div>
        <div className={styles.rightSide}>
-        <SwapVertIcon/> sort
+        {SortComp? SortComp:null}
+        
        </div>
        
         </div>
