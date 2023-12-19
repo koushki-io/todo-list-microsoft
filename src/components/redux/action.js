@@ -196,10 +196,7 @@ export const SortTaskAction=(sortby)=>(dispatch,getstate)=>{
   if (sortby=="important") {
     data=mayDay.sort((a,b)=>b.important-a.important)
   }else if(sortby=="Doudate"){
-    console.log("madiiiiiiiiiii");
-    data=mayDay.sort((a,b)=>b.duoDate-a.duoDate  )
-    // data=mayDay.sort((a,b)=>b.remindMe-a.remindMe )
-    // data=mayDay.sort((a,b)=>b.repeat-a.repeat )
+    data=mayDay.sort(customSort)
   }else{
     data=mayDay.sort(function(a, b){
       if(a.name < b.name) { return -1; }
@@ -223,4 +220,25 @@ export const ChangedouDate=(ID,Duo,value)=>(dispatch,getstate)=>{
 
   dispatch({type:'ChangTask', payload:myDay})
 localStorage.setItem("Tasks",JSON.stringify(myDay))
+}
+function customSort(a, b) {
+  if (a.duoDate && !b.duoDate) {
+      return -1;
+  } else if (!a.duoDate && b.duoDate) {
+      return 1;
+  }
+  
+  if (a.remindMe && !b.remindMe) {
+      return -1;
+  } else if (!a.remindMe && b.remindMe) {
+      return 1;
+  }
+
+  if (a.repeat && !b.repeat) {
+      return -1;
+  } else if (!a.repeat && b.repeat) {
+      return 1;
+  }
+
+  return a.name.localeCompare(b.name);
 }

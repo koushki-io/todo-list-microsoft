@@ -81,11 +81,12 @@ const sortDoudate=()=>{
        
         </div>
         <div className={styles.main} >
-        <AddTask plaaned={name=="Planned"?true:false} group={group}  important={important} myDay={myDay}/>
+        {name!=="Completed"? <AddTask plaaned={name=="Planned"?true:false} group={group}  important={important} myDay={myDay}/>:null}
+        
           <div onScroll={scrollHandler} className={styles.tasks}>
-          { Tasks.filter(task=>!task.completed).map((item,key)=><TaskItem key={key} data={item}   />)}
+          { completeTasks.map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>
-           {completeTasks.length ? <Acordion  tasks={completeTasks}/>: null}
+           {name=="Completed"? null: completeTasks.length ? <Acordion  tasks={completeTasks}/>: null}
          
           </div>
         

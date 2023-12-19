@@ -26,7 +26,7 @@ const scrollHandler=()=>{
         <h1>Serch for :  {name}</h1>
 
         <div onScroll={scrollHandler} className={styles.tasks}>
-        { Tasks.filter(task=>!task.completed).map((item,key)=><TaskItem key={key} data={item}   />)}
+        { Tasks.map((item,key)=><TaskItem key={key} data={item}   />)}
         </div>
         </div>
     </div>

@@ -13,12 +13,14 @@ import AssignedMe from './pages/assignedMe/AssignedMe';
 import { useSelector } from 'react-redux';
 import DaynamicGroup from './pages/dynamicPage/DaynamicGroup';
 import SerchTasks from './pages/serch/SerchTasks';
+import Completed from './pages/completed/completed';
 
 
 
 function App() {
   const [openClose, setopenClose] = useState(true)
 const meTasks=useSelector(x=>x.Tasks).filter(task=>!task.completed)
+const completed=useSelector(x=>x.Tasks).filter(task=>task.completed)
 const important=meTasks.filter(task=>task.important)
 const myday=meTasks.filter(task=>task.myDay)
 const planneded=meTasks.filter(task=>task.duoDate || task.remindMe  || task.repeat )
@@ -33,7 +35,8 @@ const update=useSelector(x=>x.update)
     important:important.length,
     planned:planneded.length,
     assignedMe:0,
-    tasks:meTasks.length
+    tasks:meTasks.length,
+    completed:completed.length
   })
   useEffect(() => {
     setcountTasks(
@@ -42,7 +45,9 @@ const update=useSelector(x=>x.update)
         important:important.length,
         planned:planneded.length,
         assignedMe:0,
-        tasks:meTasks.length
+        tasks:meTasks.length,
+     completed:completed.length
+
       }
     )
   }, [update])
@@ -69,6 +74,8 @@ const update=useSelector(x=>x.update)
     element={<Planned   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/tasks'
     element={<Tasks   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    <Route path='/completed'
+    element={<Completed   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/assignedMe'
     element={<AssignedMe   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/groups/:group'

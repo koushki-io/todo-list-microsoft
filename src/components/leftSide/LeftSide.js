@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddNewListAction } from '../redux/action';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DropDownMenu from "./dropMenu/DropDownMenu"
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function LeftSide({showSide,OpenCloseSideHandler,countTasks}) {
 
@@ -20,7 +21,8 @@ const [menuList, setmenuList] = useState([
 {name: 'Important',path:'important',icon:<StarBorderIcon className={styles.icons}/>},
 {name: 'Planned',path:'planned',icon:<CalendarMonthIcon className={styles.icons}/> },
 // {name: 'Assigned to me',path:'assignedMe',icon:<PersonOutlineIcon className={styles.icons}/> },
-{name: 'Tasks',path:'tasks',icon:<HomeIcon className={styles.icons}/> }
+{name: 'Tasks',path:'tasks',icon:<HomeIcon className={styles.icons}/> },
+{name: 'Completed',path:'completed',icon:<CheckCircleIcon className={styles.icons}/> }
 ])
 
 
