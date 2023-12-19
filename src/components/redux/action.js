@@ -195,6 +195,11 @@ export const SortTaskAction=(sortby)=>(dispatch,getstate)=>{
   let data;
   if (sortby=="important") {
     data=mayDay.sort((a,b)=>b.important-a.important)
+  }else if(sortby=="Doudate"){
+    console.log("madiiiiiiiiiii");
+    data=mayDay.sort((a,b)=>b.duoDate-a.duoDate  )
+    // data=mayDay.sort((a,b)=>b.remindMe-a.remindMe )
+    // data=mayDay.sort((a,b)=>b.repeat-a.repeat )
   }else{
     data=mayDay.sort(function(a, b){
       if(a.name < b.name) { return -1; }
@@ -205,4 +210,17 @@ export const SortTaskAction=(sortby)=>(dispatch,getstate)=>{
   dispatch({type:'ChangTask', payload:data})
 localStorage.setItem("Tasks",JSON.stringify(data))
 
+}
+
+
+export const ChangedouDate=(ID,Duo,value)=>(dispatch,getstate)=>{
+  const myDay=getstate().Tasks
+  myDay.forEach(element => {
+    if (element.id===ID) {
+      element[Duo]=value
+    }
+  });
+
+  dispatch({type:'ChangTask', payload:myDay})
+localStorage.setItem("Tasks",JSON.stringify(myDay))
 }

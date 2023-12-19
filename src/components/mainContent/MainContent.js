@@ -46,6 +46,10 @@ const sortAlphabetical=()=>{
   dispatch(SortTaskAction("alphabetical"))
   dispatch(UpdateAction())
 }
+const sortDoudate=()=>{
+  dispatch(SortTaskAction("Doudate"))
+  dispatch(UpdateAction())
+}
 
   return (
     <div className={styles.myParent}>
@@ -71,13 +75,13 @@ const sortAlphabetical=()=>{
       
        </div>
        <div className={styles.rightSide}>
-       <SortComp sortAlphabetical={sortAlphabetical} sortImportnt={sortImportnt}/>
+       <SortComp sortDoudate={sortDoudate} sortAlphabetical={sortAlphabetical} sortImportnt={sortImportnt}/>
         
        </div>
        
         </div>
         <div className={styles.main} >
-        <AddTask group={group}  important={important} myDay={myDay}/>
+        <AddTask plaaned={name=="Planned"?true:false} group={group}  important={important} myDay={myDay}/>
           <div onScroll={scrollHandler} className={styles.tasks}>
           { Tasks.filter(task=>!task.completed).map((item,key)=><TaskItem key={key} data={item}   />)}
            <br/>

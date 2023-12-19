@@ -9,9 +9,9 @@ import  CheckBox  from '../taskItem/checkBox/CheckBox';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import styles from './rightSide.module.css'
-import DuoDate from '../AddTask/DuoDate';
-import RemindMe from '../AddTask/RemindMe';
-import Repeat from '../AddTask/Repeat';
+import DuoDate from './duoDate/DuoDate';
+import RemindMe from './duoDate/RemindMe';
+import Repeat from './duoDate/Repeat';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -166,19 +166,19 @@ task.step.map(step =><StepsBox key={step.id} step={step} taskId={task.id} styles
            {task.myDay ? <span onClick={removeMyDay} style={{cursor:"pointer",color:"#c1c1c1"}}><CloseIcon style={{fontSize:"20px"}}/></span>: null }
         </div>
 
-        {/* <div ref={listItem} className={styles.listItem}>
+         <div ref={listItem} className={styles.listItem}>
 
-            <RemindMe inrightside={true}/>
+            <RemindMe task={task}/>
         </div>
         <div ref={listItem} className={styles.listItem}>
-        <DuoDate inrightside={true} />
+        <DuoDate task={task} />
 
         </div>
         <div ref={listItem} className={styles.listItem}>
-        <Repeat inrightside={true}/>
+        <Repeat task={task}/>
 
 
-        </div> */}
+        </div> 
 
 
         <div className={styles.note}>

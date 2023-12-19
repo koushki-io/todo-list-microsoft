@@ -1,13 +1,29 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import NextWeekIcon from '@mui/icons-material/NextWeek';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import CloseIcon from '@mui/icons-material/Close';
+
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import { ChangedouDate } from '../../redux/action';
+import { useDispatch } from 'react-redux';
+
+
 
 
 
@@ -52,42 +68,50 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function SortComp({inrightside,sortImportnt,sortAlphabetical,sortDoudate}) {
+export default function RemindMe({task}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [name, setname] = React.useState("Remind me");
+  const dispatch=useDispatch()
+
+  const changeName = (value) => {
+    dispatch(ChangedouDate(task.id,"remindMe",value))
+    setname(value)
+    setAnchorEl(null);
+  };
+  const removeDuo=() => {
+    setname("Remind me")
+    dispatch(ChangedouDate(task.id,"remindMe",null))
+
+  }
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
-
   };
-
   window.oncontextmenu = function(event) {
     setAnchorEl(null);
     }
 
   return (
     <div style={{ width:"100%"}}>
-    {inrightside ?
-<div  onClick={handleClick}  style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
-<CalendarMonthIcon onClick={handleClick}  />
+
+
+
+
+  <div    style={{display:"flex" ,justifyContent:"space-between",color:"#6E6E6D",alignItems:"center" ,width:"100%"}}>
+  <div onClick={handleClick} style={{display:"flex",gap:"10px" ,color:"#6E6E6D",alignItems:"center",width:"100%"}}>
+  <NotificationsNoneIcon   />
+<span>{name}</span>
+  </div>
+
+  {task.remindMe? <span onClick={removeDuo}><CloseIcon/></span>:null}
+
 </div>
-           :
-           <Tooltip title="Sort by">
-           <IconButton style={{fontSize:"16px"}} onClick={handleClick}> 
-           <SwapVertIcon   /> Sort
-            
-            </IconButton>
-         </Tooltip>
-
-    }
- 
-
+        
+        {/* onClick={handleClick} */}
     
-
-       
 
       <StyledMenu
         id="demo-customized-menu"
@@ -98,41 +122,27 @@ export default function SortComp({inrightside,sortImportnt,sortAlphabetical,sort
         open={open}
         onClose={handleClose}
       >
-        <h4 style={{
+         <h4 style={{
           width:"100%",
           height:"40px",
           display:"flex",
           justifyContent:"center",
           alignItems:"center"
-        }}>Sort by</h4>
+        }}>Reminder</h4>
         <Divider sx={{ my: 0.5 }} />
-
-        <MenuItem onClick={()=>{
-                sortImportnt()
-                handleClose()
-        }}
-         disableRipple>
-          <StarBorderIcon />
-          Importance
+        <MenuItem onClick={()=>changeName("Later today")} disableRipple>
+          <ArrowDropDownIcon />
+          Later today
         </MenuItem>
-        <MenuItem onClick={()=>{
-                sortDoudate()
-                handleClose()
-        }} disableRipple>
-          <CalendarMonthIcon />
-          
-          Due date 
+        <MenuItem onClick={()=>changeName("Tomorrow")} disableRipple>
+          <ArrowRightIcon />
+          Tomorrow
         </MenuItem>
-        <MenuItem  onClick={()=>{
-                sortAlphabetical()
-                handleClose()
-        }}disableRipple>
-          <SwapVertIcon />
-          
-          Alphabetical
+        <MenuItem onClick={()=>changeName("Next week")} disableRipple>
+          <KeyboardDoubleArrowRightIcon />
+          Next week
         </MenuItem>
-       
-    
+     
       </StyledMenu>
     </div>
   );

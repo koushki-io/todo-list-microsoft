@@ -21,6 +21,8 @@ function App() {
 const meTasks=useSelector(x=>x.Tasks).filter(task=>!task.completed)
 const important=meTasks.filter(task=>task.important)
 const myday=meTasks.filter(task=>task.myDay)
+const planneded=meTasks.filter(task=>task.duoDate || task.remindMe  || task.repeat )
+
 
 
 
@@ -29,7 +31,7 @@ const update=useSelector(x=>x.update)
   const [countTasks, setcountTasks] = useState({
     myday:myday.length,
     important:important.length,
-    planned:0,
+    planned:planneded.length,
     assignedMe:0,
     tasks:meTasks.length
   })
@@ -38,7 +40,7 @@ const update=useSelector(x=>x.update)
       {
         myday:myday.length,
         important:important.length,
-        planned:0,
+        planned:planneded.length,
         assignedMe:0,
         tasks:meTasks.length
       }

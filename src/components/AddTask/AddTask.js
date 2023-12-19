@@ -6,7 +6,7 @@ import Repeat from './Repeat';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddTaskAction } from '../redux/action';
 import { v4 } from 'uuid';
-function AddTask({important,myDay,group}) {
+function AddTask({important,myDay,group,plaaned}) {
   const generateShortId = () => {
     const fullId = v4(); 
     const shortId = fullId.substr(0, 8); 
@@ -16,7 +16,7 @@ function AddTask({important,myDay,group}) {
 const dispatch=useDispatch()
   const [changValue, setchangValue] = useState('')
   const [datetask, setdatetask] = useState({
-    duoDate:null,
+    duoDate:plaaned?"Today":null,
     remindMe:null,
     repeat:null,
   })
