@@ -5,11 +5,16 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Notification from "../../../audio/mixkit-correct-answer-tone-2870 (mp3cut.net).mp3"
+import TodayIcon from '@mui/icons-material/Today';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
+
+
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './dropDown.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, DeleteAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
+import { ChangeCompletedAction, ChangeImportantAction, ChangeMyDayAction, ChangedouDate, DeleteAction, OpenCloseRightSide, UpdateAction } from '../../redux/action';
 function DropDownMenu({client,task}) {
 const dispatch=useDispatch()
 
@@ -51,6 +56,10 @@ dispatch(UpdateAction())
 }
 const [offsetStyle, setOffsetStyle] = useState({left:client.x-125,top:client.y+125})
 const [flags, setflags] = useState(false)
+const douDatahandler =(value)=>{
+  dispatch(ChangedouDate(task.id,"duoDate",value))
+
+}
 
 
 const heightDrop=255
@@ -105,20 +114,20 @@ useEffect(()=>{
 </div>
 
 <div className={styles.duedate}>
-<div className={styles.item} >
- <CheckCircleOutlineIcon/>  <span>Due today </span>
+<div className={styles.item} onClick={()=>douDatahandler("Today")}  >
+ <TodayIcon/>  <span>Due today </span>
 </div>
-<div className={styles.item} >
- <CheckCircleOutlineIcon/>  <span>Due tomorrow </span>
+<div className={styles.item} onClick={()=>douDatahandler("Tomorrow")}  >
+ <KeyboardArrowRightIcon/>  <span>Due tomorrow </span>
 </div>
-<div className={styles.item} >
- <CheckCircleOutlineIcon/>  <span>Remove Due date </span>
+{task.duoDate? <div className={styles.item} onClick={()=>douDatahandler(null)} >
+ <EventBusyIcon/>  <span>Remove Due date </span>
+</div> : null}
 </div>
-</div>
-
 <div className={styles.item} onClick={deleteHandler}>
 <DeleteIcon style={{color:"red"}}/> <span>Delete</span>
-</div>
+</div> 
+
 
 </div>
 
