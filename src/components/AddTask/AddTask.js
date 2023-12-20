@@ -42,7 +42,7 @@ const myObj={
   setchangValue("")
   dispatch(AddTaskAction(myObj))
   setdatetask({
-    duoDate:null,
+    duoDate:plaaned?"Today":null,
     remindMe:null,
     repeat:null,
   })

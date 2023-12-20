@@ -31,6 +31,7 @@ const update=useSelector(x=>x.update)
 const  dispatch=useDispatch()
 
 const completeTasks=Tasks.filter(task=>task.completed)
+const NocompleteTasks=Tasks.filter(task=>!task.completed)
 
 
 const scrollHandler=()=>{
@@ -81,10 +82,12 @@ const sortDoudate=()=>{
        
         </div>
         <div className={styles.main} >
+          
         {name!=="Completed"? <AddTask plaaned={name=="Planned"?true:false} group={group}  important={important} myDay={myDay}/>:null}
         
           <div onScroll={scrollHandler} className={styles.tasks}>
-          { completeTasks.map((item,key)=><TaskItem key={key} data={item}   />)}
+          { NocompleteTasks.map((item,key)=><TaskItem key={key} data={item}   />)}
+          { name=="Completed"? completeTasks.map((item,key)=><TaskItem key={key} data={item}   />):null}
            <br/>
            {name=="Completed"? null: completeTasks.length ? <Acordion  tasks={completeTasks}/>: null}
          
