@@ -1,12 +1,12 @@
 .parent_item_list{
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     /* border:  1px solid black; */
     background-color: #fff;
     margin-top: 10px;
     box-shadow: 0px 1px 5px 0px rgba(212, 207, 207, 0.5);
     border-radius: 5px;
-    padding: 20px;
+    padding:3px  20px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -19,12 +19,12 @@
 }
 .leftSide{
     display:flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
 
 }
 .title{
-  /* height: 20px; */
+  height: 20px;
   width: auto;
   color: #000;
   align-self: flex-start;
@@ -53,7 +53,8 @@
   display: flex;
   white-space: nowrap;
   align-items: center;
-  height: 30px;
+
+  /* height: 30px; */
   
 
 }
@@ -64,14 +65,17 @@
 }
 
 .centerSide{
+  align-self: center;
   width: 100%;
-  height: 50px
+  height: 50px;
 }
 .douDate{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
   align-items: center;
   gap: 10px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-bottom: 5px;
   white-space:wrap;
 
@@ -84,13 +88,28 @@
   color: #6E6E6D;
   white-space:nowrap;
   /* align-items: flex-end; */
-  height:30px
+  /* height:30px */
 
 }
 .taskContent{
+  
   display: flex;
   flex-direction: column;
   align-items: start;
 
+}
+@media screen and (max-width:520px){
+  .douDate{
+
+    grid-template-columns: 1fr 1fr 1fr ;
+  }
+  
+}
+@media screen and (max-width:440px){
+  .douDate{
+
+    grid-template-columns: 1fr 1fr ;
+  }
+  
 }
 

@@ -22,7 +22,7 @@ function Layout(props) {
       </div>
  
           
-  <div className={props.openClose? styles.content: styles.contentSideOff}>
+  <div className={styles.content}>
          {props.children}
      </div>
      <div className={styles.rightSide}>

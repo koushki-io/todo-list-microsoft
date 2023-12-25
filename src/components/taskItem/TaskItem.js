@@ -100,7 +100,9 @@ dispatch(UpdateAction())
 
 <div className={styles.leftSide}>
 
+<div >
 <CheckBox checked={data.completed}  chackedHandler={chackedHandler} />
+</div>
    
 
 
