@@ -19,7 +19,7 @@
     width: 300px;
     position: fixed;
     z-index: 99999;
-    /* height: 100vh; */
+    height: 100vh;
     background: #fff;
     display: flex;
     flex-direction: column;
