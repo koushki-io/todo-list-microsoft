@@ -1,9 +1,9 @@
 .parent{
-    position: fixed;
+    /* position: fixed; */
     width: 300px;
     height: 100vh;
     background: #fff;
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     flex-direction: column;
     margin-left:0 ;
@@ -17,7 +17,7 @@
 }
 .parentOff{
     width: 300px;
-    position: fixed;
+    /* position: fixed; */
     z-index: 99999;
     height: 100vh;
     background: #fff;
@@ -190,4 +190,13 @@ font-weight: "100";
  }
  .listCount{
     margin-right: 40px;
+ }
+ @media screen  and (max-width:650px){
+    .parentOff{
+        position: fixed;
+    }
+    .parent{
+        position: fixed;
+
+    }
  }
