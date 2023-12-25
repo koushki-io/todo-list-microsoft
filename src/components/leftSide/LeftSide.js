@@ -114,7 +114,10 @@ const pathHandler =(path)=>{
 navigate(`./${path}`)
 }
 return (
-<div className={showSide ? styles.parent :styles.parentOff }>
+<div 
+// className={showSide ? styles.parent :styles.parentOff }
+className={showSide ? styles.parent :styles.parentOff }
+>
 <div className={styles.header} onClick={OpenCloseSideHandler} ><MenuIcon/></div>
 <div onScroll={scrollHandler} className={styles.menuParent}>
 <div className={styles.menu}>

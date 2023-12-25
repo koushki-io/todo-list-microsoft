@@ -10,22 +10,23 @@ import Important from './pages/important/Important';
 import Planned from './pages/planned/Planned';
 import Tasks from './pages/tasks/Tasks';
 import AssignedMe from './pages/assignedMe/AssignedMe';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DaynamicGroup from './pages/dynamicPage/DaynamicGroup';
 import SerchTasks from './pages/serch/SerchTasks';
 import Completed from './pages/completed/completed';
+import { OpenCloseLeftSide, OpenCloseRightSide } from './components/redux/action';
 
 
 
 function App() {
-  const [openClose, setopenClose] = useState(true)
+  const [openClose, setopenClose] = useState(false)
 const meTasks=useSelector(x=>x.Tasks).filter(task=>!task.completed)
 const completed=useSelector(x=>x.Tasks).filter(task=>task.completed)
 const important=meTasks.filter(task=>task.important)
 const myday=meTasks.filter(task=>task.myDay)
 const planneded=meTasks.filter(task=>task.duoDate || task.remindMe  || task.repeat )
 
-
+const dispatch=useDispatch()
 
 
 const update=useSelector(x=>x.update)
@@ -53,35 +54,40 @@ const update=useSelector(x=>x.update)
   }, [update])
   
 
+  const IsleftSide=useSelector(x=>x.leftSide)
+ 
 
   const OpenCloseSideHandler=()=>{
-    setopenClose((last)=>!last)
+    dispatch(OpenCloseLeftSide(!IsleftSide)) 
+    dispatch(OpenCloseRightSide(false)) 
+    // setopenClose((last)=>!last)
   }
+
 
   return (
    <>
    
     <BrowserRouter>
-   <Layout openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler} countTasks={countTasks}>
+   <Layout openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler} countTasks={countTasks}>
 
     <Routes>
     <Route path='/myday'
-    element={<MyDay  openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<MyDay  openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
     <Route path='/important'
-    element={<Important   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Important   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/planned'
-    element={<Planned   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Planned   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/tasks'
-    element={<Tasks   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Tasks   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/completed'
-    element={<Completed   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<Completed   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/assignedMe'
-    element={<AssignedMe   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<AssignedMe   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/groups/:group'
-    element={<DaynamicGroup   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<DaynamicGroup   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
     <Route path='/serch/:name'
-    element={<SerchTasks   openClose={openClose} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
+    element={<SerchTasks   openClose={IsleftSide} OpenCloseSideHandler={OpenCloseSideHandler}/>}/>
 
            <Route path='*' element={<NotFound/>}/>
            <Route path='/' element={<Home/>}/>

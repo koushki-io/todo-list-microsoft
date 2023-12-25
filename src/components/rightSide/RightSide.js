@@ -119,7 +119,8 @@ dispatch(UpdateAction())
 
   return (
     <>{task.name && <div 
-     style={{width:widthBox,marginRight:!Open?"-300px":"0"}} className={styles.rightSide}>
+     style={{width:widthBox,marginRight:!Open?"-300px":"0"}}
+      className={styles.rightSide}>
     
     <div className={styles.headerParent} >
       <div  className={styles.detilesItem}>

@@ -242,3 +242,12 @@ function customSort(a, b) {
 
   return a.name.localeCompare(b.name);
 }
+
+
+
+export const OpenCloseLeftSide=(aciton)=>(dispatch,getstate)=>{
+  
+  dispatch({type:'OpenCloseLeftSide', payload:aciton})
+
+
+}

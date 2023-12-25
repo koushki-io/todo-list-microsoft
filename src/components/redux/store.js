@@ -2,12 +2,13 @@
 import { createStore,combineReducers,applyMiddleware } from "redux";
 import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from "redux-thunk";
-import { Tasks,Update ,RightSide,newList} from "./reducer";
+import { Tasks,Update ,RightSide,newList,LeftSide} from "./reducer";
 
 const reducerc=combineReducers({
  Tasks,
   update:Update,
   rightSide:RightSide,
+  leftSide:LeftSide,
   newList:newList
   
 })

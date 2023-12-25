@@ -32,6 +32,16 @@ export const RightSide=(state={task:{},show:false},action)=>{
    }
 
 }
+export const LeftSide=(state=false,action)=>{
+   switch (action.type) {
+      case 'OpenCloseLeftSide':
+        return action.payload
+        default:
+         return state 
+           
+   }
+
+}
 
 export const newList=(state=[],action)=>{
    switch (action.type) {

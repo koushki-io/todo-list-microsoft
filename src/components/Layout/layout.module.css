@@ -31,4 +31,8 @@
 
 
   }
+  .rightSide{
+   position: fixed;
+   right: 0;
+  }
   
